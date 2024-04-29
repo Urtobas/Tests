@@ -3,6 +3,33 @@
 @{
     ViewData["Title"] = "Home page";
 }
+ <div class="container">
+     <div class="row">
+        <div class="card col-6">
+            <div class="card-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-6"><a href="#"><img class="img-fluid" src="~/icons/testing.svg" style="max-height:12rem;" /></a></div>
+                        <div class="col-6">переход на страницу выбора теста</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+        <div class="card col-6">
+            <div class="card-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-6"><a asp-page="/AddingPages/AddingPanel"><img class="img-fluid" src="~/icons/settings.svg" style="max-height:12rem;" /></a></div>
+                        <div class="col-6">переход на страницу добавления и редактирования тестов</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+     </div>
+ </div>
+
+
 
 <div class="container">
     <div class="row">

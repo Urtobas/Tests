@@ -6,7 +6,7 @@ namespace Tests.Models
     {
         public int Id { get; set; }
 
-        [Required, Display(Name = "Название уровеня сложности")]
+        [Required, Display(Name = "Название уровня сложности")]
         public string Level { get; set; }
     }
 }

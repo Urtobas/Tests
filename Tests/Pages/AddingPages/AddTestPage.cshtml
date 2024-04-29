@@ -11,7 +11,12 @@
             </div>
             <div>
                 <label asp-for="TestProp.DifficultyLevel"></label>
-                <input asp-for="TestProp.DifficultyLevel" class="form-control" id="DifficultyLevel" name="DifficultyLevel" required>
+                <select asp-for="TestProp.DifficultyLevel" class="form-control" id="DifficultyLevel" name="DifficultyLevel" required>
+                    @foreach(var e in Model.Levels)
+                    {
+                        <option>@e.Level</option>
+                    }
+                </select>
             </div>
             <div>
                 <label asp-for="TestProp.Language"></label>

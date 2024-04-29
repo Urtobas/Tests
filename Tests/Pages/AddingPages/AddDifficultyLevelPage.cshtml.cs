@@ -15,16 +15,16 @@ namespace Tests.Pages
         }
         [BindProperty]
         public DifficultyLevel? DifficultyLevelBP { get; set; }
-        public ICollection<DifficultyLevel>  DifficultyLevels { get; set; }
+        public ICollection<DifficultyLevel> DifficultyLevels { get; set; }
 
         public void OnGet()
         {
-            
+
         }
 
         public IActionResult OnGetRemoveLevel(int? id)
         {
-            if(id != null)
+            if (id != null)
             {
                 DifficultyLevel? level = _context.DifficultyLevels.FirstOrDefault(op => op.Id == id);
                 if (level != null)
@@ -32,7 +32,7 @@ namespace Tests.Pages
                     _context.DifficultyLevels.Remove(level);
                     _context.SaveChanges();
                     DifficultyLevels = _context.DifficultyLevels.ToList();
-                    DifficultyLevelBP = null; 
+                    DifficultyLevelBP = null;
                     return Page();
                 }
             }
@@ -41,14 +41,28 @@ namespace Tests.Pages
 
         public IActionResult OnPost()
         {
-            if(DifficultyLevelBP != null)
+            if (DifficultyLevelBP != null)
             {
-                _context.DifficultyLevels.Add(DifficultyLevelBP);
-                _context.SaveChanges();
-                DifficultyLevels = _context.DifficultyLevels.ToList();
-                return RedirectToPage("/AddDifficultyLevelPage");
+                try
+                {
+                    _context.DifficultyLevels.Add(DifficultyLevelBP);
+                    _context.SaveChanges();
+                    DifficultyLevels = _context.DifficultyLevels.ToList();
+                    return Page();
+                }
+                catch
+                {
+                    TempData["ErrorMessage"] = "исключение";
+                    return RedirectToPage("/Error");
+                }
+               
             }
-            return RedirectToPage("/Error");
+            else
+            {
+                TempData["ErrorMessage"] = "Значение DifficultyLevelBP равно null";
+                return RedirectToPage("/Error");
+            }
+
         }
     }
 }

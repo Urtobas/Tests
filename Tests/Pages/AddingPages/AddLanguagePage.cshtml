@@ -1,0 +1,33 @@
+﻿@page "{id?}"
+@model Tests.Pages.AddLanguagePageModel
+@{
+}
+
+
+<div class="container">
+    <div class="row">
+        <form method="post" class="col-6">
+            <div>
+                <label asp-for="Language.LanguageTitle"></label>
+                <input asp-for="Language.LanguageTitle" class="form-control" id="LanguageTitle" name="LanguageTitle" required>
+            </div>
+            <button class="btn btn-secondary form-control" type="submit">Добавить</button>
+        </form>
+
+        <div class="col-6">
+            <div class="container">
+                <div class="row">
+                    @foreach (var e in Model.Languages)
+                    {
+                        <div class="col-7">
+                            <a href="#" class="btn btn-secondary form-control m-1">@e.LanguageTitle</a>
+                        </div>
+                        <div class="col-5">
+                            <a asp-page="AddLanguagePage" asp-page-handler="RemoveLanguage" asp-route-id="@e.Id" class="btn btn-danger form-control m-1">Удалить</a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

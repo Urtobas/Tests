@@ -15,11 +15,13 @@ namespace Tests.Pages
         [BindProperty]
         public Test TestProp { get; set; }
 
+        public ICollection<DifficultyLevel> Levels { get; set; }
         public ICollection<ProgramLanguage> Languages { get; set; }
 
         public void OnGet()
         {
             Languages = _context.ProgramLanguages.ToList();
+            Levels = _context.DifficultyLevels.ToList(); 
         }
 
         public void OnPost()
