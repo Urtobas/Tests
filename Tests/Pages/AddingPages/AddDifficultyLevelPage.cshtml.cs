@@ -15,7 +15,7 @@ namespace Tests.Pages
         }
         [BindProperty]
         public DifficultyLevel? DifficultyLevelBP { get; set; }
-        public ICollection<DifficultyLevel> DifficultyLevels { get; set; }
+        public IEnumerable<DifficultyLevel> DifficultyLevels { get; set; }
 
         public void OnGet()
         {

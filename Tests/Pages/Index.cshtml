@@ -3,8 +3,8 @@
 @{
     ViewData["Title"] = "Home page";
 }
- <div class="container">
-     <div class="row">
+<div class="container">
+    <div class="row">
         <div class="card col-6">
             <div class="card-body">
                 <div class="container">
@@ -15,7 +15,7 @@
                 </div>
             </div>
         </div>
-       
+
         <div class="card col-6">
             <div class="card-body">
                 <div class="container">
@@ -26,26 +26,32 @@
                 </div>
             </div>
         </div>
-     </div>
- </div>
+    </div>
+</div>
 
 
 
 <div class="container">
     <div class="row">
-        @if(Model.Tests.Count > 0)
-        {
-            @foreach (var e in Model.Tests)
+       
+        <div class="col-8 offset-2 bg-secondary  border border-1 rounded-3 my-4 p-2">
+            @if (Model.RandomTests.Count > 0)
             {
-                <div>@e.TestTitle</div>
+                @foreach (var e in Model.RandomTests)
+                {
+                    <div class="chip bg-light d-inline-flex m-1 small">
+                        <a href="#" class="d-inline-flex m-2 text-decoration-none text-dark">@e.TestTitle</a>
+                    </div>
+                }
             }
-        }
-        else
-        {
-            <div><p>Число тестов на @DateTime.Now.ToShortDateString() составляет @Model.CountProp</p></div>
-        }
+            else
+            {
+                <div><p>Число тестов на @DateTime.Now.ToShortDateString() составляет @Model.CountProp</p></div>
+            }
+        </div> 
     </div>
 </div>
+
 
 
 

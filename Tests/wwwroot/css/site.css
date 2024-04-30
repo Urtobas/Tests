@@ -16,3 +16,10 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+/* MY STYLES */
+.chip {
+    height: 2rem;
+    line-height: 1rem;
+    border-radius: 1rem;
+}

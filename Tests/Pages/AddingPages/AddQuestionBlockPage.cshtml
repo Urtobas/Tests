@@ -8,6 +8,15 @@
     <div class="row">
         <form method="post" class="col-8 offset-2">
             <div>
+                <label asp-for="QuestionBlockProp.TestId"></label>
+                <select class="form-control" name="TestId">
+                    @foreach(var e in Model.Tests)
+                    {
+                        <option value="@e.Id">@e.TestTitle</option>
+                    }
+                </select>
+            </div>
+            <div>
                 <label asp-for="QuestionBlockProp.Question"></label>
                 <input asp-for="QuestionBlockProp.Question" class="form-control" type="text" id="Question" name="Question" required>
             </div>

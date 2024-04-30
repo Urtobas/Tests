@@ -25,7 +25,7 @@ namespace Tests.Models
         [Required, Display(Name = "Номер правильного ответа")]
         public int RightAnswerNum { get; set; }
 
-        [Required]
+        [Required, Display(Name = "Выбрать тест, к которому будут добавлен блок вопрос-ответ")]
         public ICollection<Test> TestId { get; set; }
     }
 }

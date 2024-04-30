@@ -6,12 +6,16 @@
     <div class="row">
         <form method="post" class="col-8 offset-2">
             <div>
-                <label asp-for="TestProp.TestTitle"></label>
-                <input asp-for="TestProp.TestTitle" class="form-control" id="Language" name="Language" required>
+                <label asp-for="AddingTest.TestTitle"></label>
+                <input asp-for="AddingTest.TestTitle" class="form-control" name="TestTitle" required>
             </div>
             <div>
-                <label asp-for="TestProp.DifficultyLevel"></label>
-                <select asp-for="TestProp.DifficultyLevel" class="form-control" id="DifficultyLevel" name="DifficultyLevel" required>
+                <label asp-for="AddingTest.Author"></label>
+                <input asp-for="AddingTest.Author" class="form-control" name="Author" required>
+            </div>
+            <div>
+                <label asp-for="AddingTest.DifficultyLevel"></label>
+                <select asp-for="AddingTest.DifficultyLevel" class="form-control" name="DifficultyLevel" required>
                     @foreach(var e in Model.Levels)
                     {
                         <option>@e.Level</option>
@@ -19,8 +23,8 @@
                 </select>
             </div>
             <div>
-                <label asp-for="TestProp.Language"></label>
-                <select asp-for="TestProp.Language" class="form-control" id="Language" name="Language" require>
+                <label asp-for="AddingTest.Language"></label>
+                <select asp-for="AddingTest.Language" class="form-control" name="Language" require>
                     @foreach(var e in Model.Languages)
                     {
                         <option>@e.LanguageTitle</option>
