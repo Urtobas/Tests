@@ -8,7 +8,7 @@
     <div class="row">
         <form method="post" class="col-8 offset-2">
             <div>
-                <label asp-for="QuestionBlockProp.TestId"></label>
+                <label asp-for="AddingQuestionBlock.TestId"></label>
                 <select class="form-control" name="TestId">
                     @foreach(var e in Model.Tests)
                     {
@@ -17,30 +17,31 @@
                 </select>
             </div>
             <div>
-                <label asp-for="QuestionBlockProp.Question"></label>
-                <input asp-for="QuestionBlockProp.Question" class="form-control" type="text" id="Question" name="Question" required>
+                <label asp-for="AddingQuestionBlock.Question"></label>
+                <input asp-for="AddingQuestionBlock.Question" class="form-control" type="text" id="Question" name="Question" required>
             </div>
             <div>
-                <label asp-for="QuestionBlockProp.Answer1"></label>
-                <input asp-for="QuestionBlockProp.Answer1" class="form-control" type="text" id="Answer1" name="Answer1" required>
+                <label asp-for="AddingQuestionBlock.Answer1"></label>
+                <input asp-for="AddingQuestionBlock.Answer1" class="form-control" type="text" id="Answer1" name="Answer1" required>
             </div>
             <div>
-                <label asp-for="QuestionBlockProp.Answer2"></label>
-                <input asp-for="QuestionBlockProp.Answer2" class="form-control" type="text" id="Answer2" name="Answer2" required>
+                <label asp-for="AddingQuestionBlock.Answer2"></label>
+                <input asp-for="AddingQuestionBlock.Answer2" class="form-control" type="text" id="Answer2" name="Answer2" required>
             </div>
             <div>
-                <label asp-for="QuestionBlockProp.Answer3"></label>
-                <input asp-for="QuestionBlockProp.Answer3" class="form-control" type="text" id="Answer3" name="Answer3" required>
+                <label asp-for="AddingQuestionBlock.Answer3"></label>
+                <input asp-for="AddingQuestionBlock.Answer3" class="form-control" type="text" id="Answer3" name="Answer3" required>
             </div>
             <div>
-                <label asp-for="QuestionBlockProp.Answer4"></label>
-                <input asp-for="QuestionBlockProp.Answer4"  class="form-control" type="text" id="Answer4" name="Answer4" required>
+                <label asp-for="AddingQuestionBlock.Answer4"></label>
+                <input asp-for="AddingQuestionBlock.Answer4" class="form-control" type="text" id="Answer4" name="Answer4" required>
             </div>
             <div>
-                <label asp-for="QuestionBlockProp.RightAnswerNum"></label>
-                <input asp-for="QuestionBlockProp.RightAnswerNum" class="form-control" type="number" id="RightAnswerNum" name="RightAnswerNum" required>
+                <label asp-for="AddingQuestionBlock.RightAnswerNum"></label>
+                <input asp-for="AddingQuestionBlock.RightAnswerNum" class="form-control" type="number" id="RightAnswerNum" name="RightAnswerNum" required>
             </div>
             <button class="btn btn-secondary form-control" type="submit">Сохранить</button>
         </form>
+        <div class="col-8 offset-2 alert-success">@TempData["SuccessMessage"]</div>
     </div>
 </div>

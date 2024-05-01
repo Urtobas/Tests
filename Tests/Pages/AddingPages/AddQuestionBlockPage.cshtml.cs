@@ -12,21 +12,33 @@ namespace Tests.Pages
         public AddQuestionBlockPageModel(ApplicationDbContext context)
         {
             _context = context;
-            Tests = _context.Tests; 
+            Tests = _context.Tests;
         }
         [BindProperty]
-        public QuestionBlock QuestionBlockProp { get; set; }
+        public QuestionBlock AddingQuestionBlock { get; set; }
 
         public IEnumerable<Test> Tests { get; set; }
 
-       
+
 
         public void OnGet()
         {
         }
 
-        public void OnPost()
+        public IActionResult OnPost()
         {
+            if (ModelState.IsValid)
+            {
+                _context.Add(AddingQuestionBlock);
+                _context.SaveChanges();
+                TempData["SuccessMessage"] = "Данные успешно добавлены";
+                return Page();
+            }
+            else
+            {
+                TempData["ErrorMessage"] = "Произощла ошибка при добавлении блока вопрос-ответы";
+                return RedirectToPage("Error");
+            }
         }
     }
 }

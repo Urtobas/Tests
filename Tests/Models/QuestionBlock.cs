@@ -7,7 +7,7 @@ namespace Tests.Models
         [Required]
         public int Id { get; set; }
 
-        [Required, Display(Name = "Первый вариант ответа")]
+        [Required, Display(Name = "Вопрос")]
         public string Question { get; set; }
 
         [Required, Display(Name = "Первый вариант ответа")]
