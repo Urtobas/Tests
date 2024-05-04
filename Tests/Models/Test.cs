@@ -18,5 +18,8 @@ namespace Tests.Models
 
         [Required, Display(Name = "Автор теста")]
         public string Author { get; set; }
+
+        //public ICollection<QuestionBlock> QuestionBlocks { get; set; }
+
     }
 }

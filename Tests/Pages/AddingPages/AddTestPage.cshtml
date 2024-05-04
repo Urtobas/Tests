@@ -1,7 +1,8 @@
 ﻿@page
-@model Tests.Pages.AddTestPageModel
+@model Tests.Pages.AddingPages.AddTestPageModel
 @{
 }
+
 <div class="container">
     <div class="row">
         <form method="post" class="col-8 offset-2">
@@ -16,7 +17,7 @@
             <div>
                 <label asp-for="AddingTest.DifficultyLevel"></label>
                 <select asp-for="AddingTest.DifficultyLevel" class="form-control" name="DifficultyLevel" required>
-                    @foreach(var e in Model.Levels)
+                    @foreach (var e in Model.Levels)
                     {
                         <option>@e.Level</option>
                     }
@@ -25,7 +26,7 @@
             <div>
                 <label asp-for="AddingTest.Language"></label>
                 <select asp-for="AddingTest.Language" class="form-control" name="Language" require>
-                    @foreach(var e in Model.Languages)
+                    @foreach (var e in Model.Languages)
                     {
                         <option>@e.LanguageTitle</option>
                     }

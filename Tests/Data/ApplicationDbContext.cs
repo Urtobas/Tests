@@ -11,6 +11,7 @@ namespace Tests.Data
         {
             try
             {
+                //Database.EnsureDeleted();
                 Database.EnsureCreated();
             }
             catch

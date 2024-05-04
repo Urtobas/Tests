@@ -9,7 +9,7 @@
             <div class="card-body">
                 <div class="container">
                     <div class="row">
-                        <div class="col-6"><a href="#"><img class="img-fluid" src="~/icons/testing.svg" style="max-height:12rem;" /></a></div>
+                        <div class="col-6"><a asp-page="TestPage"><img class="img-fluid" src="~/icons/testing.svg" style="max-height:12rem;" /></a></div>
                         <div class="col-6">переход на страницу выбора теста</div>
                     </div>
                 </div>
@@ -35,7 +35,7 @@
     <div class="row">
        
         <div class="col-8 offset-2 bg-secondary  border border-1 rounded-3 my-4 p-2">
-            @if (Model.RandomTests.Count > 0)
+            @if (Model.RandomTests.Count() > 0)
             {
                 @foreach (var e in Model.RandomTests)
                 {
@@ -46,7 +46,7 @@
             }
             else
             {
-                <div><p>Число тестов на @DateTime.Now.ToShortDateString() составляет @Model.CountProp</p></div>
+                <div><p>Число тестов на @DateTime.Now.ToShortDateString() составляет @Model.TestCount</p></div>
             }
         </div> 
     </div>

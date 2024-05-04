@@ -1,4 +1,9 @@
-﻿@page
+﻿@page 
 @model Tests.Pages.TestPageModel
 @{
+}
+<h1>Список тестов</h1>
+@foreach(var e in Model.Tests)
+{
+    <a class="btn btn-outline-secondary" asp-page="SolvingTestPage" asp-route-id="@e.Id">@e.TestTitle</a>
 }

@@ -1,0 +1,40 @@
+﻿@page "{id?}"
+@model Tests.Pages.SolvingTestPageModel
+@{
+}
+@if (Model.CurrentTest == null)
+{
+    <div class="alert">NULL</div>
+}
+else
+{
+    <form method="post">
+        @foreach (var e in Model.Blocks)
+        {
+            <div class="m-2">
+                <div class="form-check">
+                    <label class="display-6" for="@e.Id">@e.Question</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" id="@e.Id" name="@e.Id" value="@e.Answer1">
+                    <label class="form-check-label" for="@e.Id">@Html.Raw(@e.Answer1)</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" id="@e.Id" name="@e.Id" value="@e.Answer2">
+                    <label class="form-check-label" for="@e.Id">@Html.Raw(@e.Answer2)</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" id="@e.Id" name="@e.Id" value="@e.Answer3">
+                    <label class="form-check-label" for="@e.Id">@Html.Raw(@e.Answer3)</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" id="@e.Id" name="@e.Id" value="@e.Answer4">
+                    <label class="form-check-label" for="@e.Id">@Html.Raw(@e.Answer4)</label>
+                </div>
+            </div>
+        }
+        <input class="btn btn-outline-success" type="submit" value="Отправить тест">
+    </form>
+   
+}
+

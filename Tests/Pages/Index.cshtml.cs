@@ -15,15 +15,24 @@ namespace Tests.Pages
             tagsCount = 10; 
 
         }
-        public int CountProp { get; set; }
-        public ICollection<Test> Tests { get; set; }
-        public ICollection<Test> RandomTests { get; set; }
+        public int TestCount { get; set; }
+        public IEnumerable<Test> Tests { get; set; }
+        public IEnumerable<Test> RandomTests { get; set; }
 
         public void OnGet()
         {
-            CountProp = _context.Tests.Count();
-            Tests = _context.Tests.ToList();
-            RandomTests = GetRandomElements(Tests, tagsCount).ToList();
+            try
+            {
+                TestCount = _context.Tests.Count();
+                Tests = _context.Tests.ToList();
+                RandomTests = GetRandomElements(Tests, tagsCount).ToList();
+            }
+            catch
+            {
+                Tests = new List<Test>();
+                RandomTests = new List<Test>();
+            }
+            
         }
 
         //перенести потом в отдельную библитеку

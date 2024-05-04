@@ -1,9 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Tests.Data;
 using Tests.Models;
 
-namespace Tests.Pages
+namespace Tests.Pages.AddingPages
 {
     public class AddTestPageModel : PageModel
     {
@@ -11,14 +12,15 @@ namespace Tests.Pages
         public AddTestPageModel(ApplicationDbContext context)
         {
             _context = context;
-            Languages = _context.ProgramLanguages.ToList();
+            Languages = _context.ProgramLanguages;
             Levels = _context.DifficultyLevels.ToList();
         }
         [BindProperty]
         public Test AddingTest { get; set; }
 
-        public ICollection<DifficultyLevel> Levels { get; set; }
-        public ICollection<ProgramLanguage> Languages { get; set; }
+
+        public IEnumerable<DifficultyLevel> Levels { get; set; }
+        public IEnumerable<ProgramLanguage> Languages { get; set; }
 
         public void OnGet()
         {
@@ -46,7 +48,25 @@ namespace Tests.Pages
             }
             else
             {
-                TempData["ErrorMessage"] = "Возникла ошибка при добавлении теста, вернитесь на страницу добавления теста и попробуйте снова";
+                TempData["ErrorMessage"] = $"Возникла ошибка при добавлении теста, вернитесь на страницу добавления теста и попробуйте снова - ";
+
+                string errorMessages = "";
+                // проходим по всем элементам в ModelState
+                foreach (var item in ModelState)
+                {
+                    // если для определенного элемента имеются ошибки
+                    if (item.Value.ValidationState == ModelValidationState.Invalid)
+                    {
+                        errorMessages = $"{errorMessages}\nОшибки для свойства {item.Key}:\n";
+                        // пробегаемся по всем ошибкам
+                        foreach (var error in item.Value.Errors)
+                        {
+                            errorMessages = $"{errorMessages}{error.ErrorMessage}\n";
+                        }
+                    }
+                }
+                TempData["ErrorMessage"] += errorMessages;
+
                 return RedirectToPage("../Error");
             }
         }
