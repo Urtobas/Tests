@@ -6,6 +6,7 @@
         public DateTime DatePassing { get; set; }
         public int RightAnswersCount { get; set; } = 0;
         public int WrongAnswersCount { get; set; } = 0;
-        //public string UserId { get; set; }
+        public int TestId { get; set; }
+        public string TestingUserId { get; set; }
     }
 }

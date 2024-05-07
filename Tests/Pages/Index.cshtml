@@ -1,4 +1,4 @@
-﻿@page
+﻿@page 
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
@@ -40,7 +40,7 @@
                 @foreach (var e in Model.RandomTests)
                 {
                     <div class="chip bg-light d-inline-flex m-1 small">
-                        <a href="#" class="d-inline-flex m-2 text-decoration-none text-dark">@e.TestTitle</a>
+                        <a asp-page="SolvingTestPage" asp-route-id="@e.Id" class="d-inline-flex m-2 text-decoration-none text-dark">@e.TestTitle</a>
                     </div>
                 }
             }
