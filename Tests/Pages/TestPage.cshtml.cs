@@ -14,13 +14,22 @@ namespace Tests.Pages
             Tests = _context.Tests;
             RandomTests = IndexModel.GetRandomElements(Tests, 5);
         }
+        
         public int TestCount { get; set; }
         public IEnumerable<Test> Tests { get; set; }
         public IEnumerable<Test> RandomTests { get; set; }
+        public IEnumerable<Test> SelectedTests { get; set; }
+        public IEnumerable<string> Languages { get; set; }
 
         public void OnGet()
         {
+            Languages = _context.ProgramLanguages.Select(op => op.LanguageTitle);
+        }
 
+        public void OnGetByLanguage(string option)
+        {
+            Languages = _context.ProgramLanguages.Select(op => op.LanguageTitle);
+            SelectedTests = _context.Tests.Where(op => op.Language == option);
         }
     }
 }

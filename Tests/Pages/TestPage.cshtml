@@ -1,9 +1,24 @@
-﻿@page 
+﻿@page "{option?}"
 @model Tests.Pages.TestPageModel
 @{
 }
 <h1>Список тестов</h1>
-@foreach(var e in Model.Tests)
-{
-    <a class="btn btn-outline-secondary" asp-page="SolvingTestPage" asp-route-id="@e.Id">@e.TestTitle</a>
-}
+<div class="container">
+    <div class="row">
+        <div class="col-4">
+            @foreach(var e in Model.Languages)
+            {
+                <a class="btn btn-outline-secondary form-control" asp-page="TestPage" asp-route-option="@e" asp-page-handler="ByLanguage">@e</a>
+            }
+           
+        </div>
+
+        <div class="col-8">
+            @foreach (var e in Model.SelectedTests)
+            {
+                <a class="btn btn-outline-secondary" asp-page="SolvingTestPage" asp-route-id="@e.Id">@e.TestTitle</a>
+            }
+        </div>
+    </div>
+</div>
+
