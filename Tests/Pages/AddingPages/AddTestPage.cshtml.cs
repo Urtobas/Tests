@@ -44,11 +44,11 @@ namespace Tests.Pages.AddingPages
             {
                 _context.Tests.Add(AddingTest);
                 _context.SaveChanges();
-                return Page();
+                return RedirectToPage("../Index");
             }
             else
             {
-                TempData["ErrorMessage"] = $"Возникла ошибка при добавлении теста, вернитесь на страницу добавления теста и попробуйте снова - ";
+                TempData["ErrorMessage"] = $"Возникла ошибка при добавлении теста. Возможно тест с таким названием уже существует в базе данных. Вернитесь на страницу добавления теста и попробуйте снова. ";
 
                 string errorMessages = "";
                 // проходим по всем элементам в ModelState

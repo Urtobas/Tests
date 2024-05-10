@@ -2,18 +2,42 @@
 @model Tests.Pages.TestPageModel
 @{
 }
-<h1>Список тестов</h1>
+<h1>Поиск, фильтрация тестов</h1>
 <div class="container">
     <div class="row">
         <div class="col-4">
-            @foreach(var e in Model.Languages)
+            <h2>Фильтры</h2>
+            <form method="post">
+                <div class="form-check">
+                    <select class="form-select">
+                        @foreach (var e in Model.Languages)
+                        {
+                            <option class="" value="@e">@e</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-check">
+                    <select class="form-select">
+                        @foreach (var e in Model.DifficaltyLevels)
+                        {
+                            <option class="" value="@e">@e</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-check">
+                    <input class="btn btn-outline-secondary form-control" type="submit" />
+                </div>
+            </form>
+            <hr class="my-4" />
+            @foreach (var e in Model.Languages)
             {
                 <a class="btn btn-outline-secondary form-control" asp-page="TestPage" asp-route-option="@e" asp-page-handler="ByLanguage">@e</a>
             }
-           
+
         </div>
 
         <div class="col-8">
+            <h2>Тесты</h2>
             @foreach (var e in Model.SelectedTests)
             {
                 <a class="btn btn-outline-secondary" asp-page="SolvingTestPage" asp-route-id="@e.Id">@e.TestTitle</a>
