@@ -14,7 +14,10 @@ namespace Tests.Pages
             Tests = _context.Tests;
             RandomTests = IndexModel.GetRandomElements(Tests, 5);
         }
-        
+
+        [BindProperty]
+        public InputModel InputModel { get; set; }
+
         public int TestCount { get; set; }
         public IEnumerable<Test> Tests { get; set; }
         public IEnumerable<Test> RandomTests { get; set; }
@@ -33,7 +36,8 @@ namespace Tests.Pages
         {
             Languages = _context.ProgramLanguages.Select(op => op.LanguageTitle);
             DifficaltyLevels = _context.DifficultyLevels.Select(op => op.Level);
-            SelectedTests = _context.Tests;
+            SelectedTests = _context.Tests.Where(op => op.Language == InputModel.Language 
+            && op.DifficultyLevel == InputModel.Level);
         }
 
         public void OnGetByLanguage(string? option)
@@ -46,5 +50,10 @@ namespace Tests.Pages
             }
             else SelectedTests = _context.Tests;
         }
+    }
+    public class InputModel
+    {
+        public string Language { get; set; }
+        public string Level { get; set; }
     }
 }

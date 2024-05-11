@@ -9,7 +9,7 @@
         <form method="post" class="col-8 offset-2">
             <div>
                 <label asp-for="AddingQuestionBlock.TestId"></label>
-                <select class="form-control" name="TestId">
+                <select class="form-control mb-4" name="TestId">
                     @foreach(var e in Model.Tests)
                     {
                         <option value="@e.Id">@e.TestTitle</option>
@@ -18,27 +18,27 @@
             </div>
             <div>
                 <label asp-for="AddingQuestionBlock.Question"></label>
-                <textarea asp-for="AddingQuestionBlock.Question" class="form-control" type="text" id="Question" name="Question" required></textarea>
+                <textarea asp-for="AddingQuestionBlock.Question" class="form-control mb-4" type="text" id="Question" name="Question" required></textarea>
             </div>
             <div>
                 <label asp-for="AddingQuestionBlock.Answer1"></label>
-                <textarea asp-for="AddingQuestionBlock.Answer1" class="form-control" type="text" id="Answer1" name="Answer1" required></textarea>
+                <textarea asp-for="AddingQuestionBlock.Answer1" class="form-control mb-4" type="text" id="Answer1" name="Answer1" required></textarea>
             </div>
             <div>
                 <label asp-for="AddingQuestionBlock.Answer2"></label>
-                <textarea asp-for="AddingQuestionBlock.Answer2" class="form-control" type="text" id="Answer2" name="Answer2" required></textarea>
+                <textarea asp-for="AddingQuestionBlock.Answer2" class="form-control mb-4" type="text" id="Answer2" name="Answer2" required></textarea>
             </div>
             <div>
                 <label asp-for="AddingQuestionBlock.Answer3"></label>
-                <textarea asp-for="AddingQuestionBlock.Answer3" class="form-control" type="text" id="Answer3" name="Answer3" required></textarea>
+                <textarea asp-for="AddingQuestionBlock.Answer3" class="form-control mb-4" type="text" id="Answer3" name="Answer3" required></textarea>
             </div>
             <div>
                 <label asp-for="AddingQuestionBlock.Answer4"></label>
-                <textarea asp-for="AddingQuestionBlock.Answer4" class="form-control" type="text" id="Answer4" name="Answer4" required></textarea>
+                <textarea asp-for="AddingQuestionBlock.Answer4" class="form-control mb-4" type="text" id="Answer4" name="Answer4" required></textarea>
             </div>
             <div>
                 <label asp-for="AddingQuestionBlock.RightAnswerNum"></label>
-                <input asp-for="AddingQuestionBlock.RightAnswerNum" class="form-control" type="number" id="RightAnswerNum" name="RightAnswerNum" required>
+                <input asp-for="AddingQuestionBlock.RightAnswerNum" class="form-control mb-2" type="number" id="RightAnswerNum" name="RightAnswerNum" required>
             </div>
             <button class="btn btn-secondary form-control" type="submit">Сохранить</button>
         </form>

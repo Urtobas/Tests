@@ -4,7 +4,7 @@ namespace Tests.Models
 {
     public class QuestionBlock
     {
-        [Required, Display(Name = "Выбрать тест")]
+        [Required]
         public int Id { get; set; }
 
         [Required, Display(Name = "Вопрос")]
@@ -25,6 +25,7 @@ namespace Tests.Models
         [Required, Display(Name = "Номер правильного ответа")]
         public int RightAnswerNum { get; set; }
 
+        [Required, Display(Name = "Выбрать тест")]
         public int TestId { get; set; } // Внешний ключ
         //public Test Test { get; set; } // Навигационное свойство
 

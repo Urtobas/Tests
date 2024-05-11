@@ -10,17 +10,17 @@
 
 else
 {
-    <form method="post">
+    <form method="post" class="col-12 col-md-10 offset-md-1">
         @for(int i = 0; i < Model.Count; i++)
         {
             <div class="m-2">
                 <div class="form-check">
-                    <label class="display-6">@Model.Blocks.ElementAt(i).Question</label>
+                    <label class="display-blue-9">@Model.Blocks.ElementAt(i).Question</label>
                     <input hidden name="currentTestId" value="@Model.CurrentTest.Id">
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="radio" id="@("answer" + Model.Blocks.ElementAt(i).Id)" name="@("answer" + (i + 1).ToString())" value="1">
-                    <label class="form-check-label" for="answer + @Model.Blocks.ElementAt(i).Id">@Html.Raw(Model.Blocks.ElementAt(i).Answer1)</label>
+                    <label class="form-check-label " for="answer + @Model.Blocks.ElementAt(i).Id">@Html.Raw(Model.Blocks.ElementAt(i).Answer1)</label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="radio" id="@("answer" + Model.Blocks.ElementAt(i).Id)" name="@("answer" + (i+1).ToString())" value="2">
@@ -36,8 +36,14 @@ else
                 </div>
             </div>
         }
-        <input class="btn btn-outline-success" type="submit" value="Отправить тест">
+        <input class="btn btn-outline-primary form-control" type="submit" value="Отправить тест">
     </form>   
 }
-<div class="display-6">@Html.Raw(TempData["result"]) </div> 
-<div class="text-danger">Число правильных ответов - @Html.Raw(TempData["RightAnswers"]) </div>
+<div class="col-10 offset-1 bg-silver border border-2 rounded-3 border-success my-2 p-2">
+    <div class="display-7 text-success">Результаты теста</div>
+    <div class="">@Html.Raw(TempData["result"]) </div>
+    <div class="display-blue-9">Количество вопросов - @Html.Raw(Model.Blocks.Count()) </div>
+    <div class="display-blue-9">Число правильных ответов - @Html.Raw(Model.CountRightAnswers) </div>
+</div>
+
+

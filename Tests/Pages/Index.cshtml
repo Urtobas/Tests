@@ -2,26 +2,27 @@
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
+    Random r = new();
 }
 <div class="container">
     <div class="row">
-        <div class="card col-6">
+        <div class="card col-6 bg-silver">
             <div class="card-body">
                 <div class="container">
                     <div class="row">
                         <div class="col-6"><a asp-page="TestPage"><img class="img-fluid" src="~/icons/testing.svg" style="max-height:12rem;" /></a></div>
-                        <div class="col-6"><a class="fw-bold text-decoration-none text-dark" asp-page="/AddingPages/AddingPanel">Переход на страницу выбора теста</a></div>
+                        <div class="col-6"><a class="fw-bold text-decoration-none text-dark display-9" asp-page="/AddingPages/AddingPanel">Переход на страницу выбора теста</a></div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="card col-6">
+        <div class="card col-6 bg-silver">
             <div class="card-body">
                 <div class="container">
                     <div class="row">
                         <div class="col-6"><a asp-page="/AddingPages/AddingPanel"><img class="img-fluid" src="~/icons/settings.svg" style="max-height:12rem;" /></a></div>
-                        <div class="col-6 text-decoration-none text-dark"><a class="fw-bold text-decoration-none text-dark" asp-page="/AddingPages/AddingPanel">Переход на страницу добавления и редактирования тестов</a></div>
+                        <div class="col-6 text-decoration-none text-dark display-9"><a class="fw-bold text-decoration-none text-dark" asp-page="/AddingPages/AddingPanel">Переход на страницу добавления и редактирования тестов</a></div>
                     </div>
                 </div>
             </div>
@@ -34,12 +35,12 @@
 <div class="container">
     <div class="row">
        
-        <div class="col-8 offset-2 bg-secondary  border border-1 rounded-3 my-4 p-2">
+        <div class="col-12 bg-silver border border-1 rounded-3 my-4 p-2">
             @if (Model.RandomTests.Count() > 0)
             {
                 @foreach (var e in Model.RandomTests)
                 {
-                    <div class="chip bg-light d-inline-flex m-1 small">
+                    <div class="chip bg-light d-inline-flex m-1 small" style="font-size:@r.Next(12,24)px;">
                         <a asp-page="SolvingTestPage" asp-route-id="@e.Id" class="d-inline-flex m-2 text-decoration-none text-dark">@e.TestTitle</a>
                     </div>
                 }

@@ -23,3 +23,47 @@ body {
     line-height: 1rem;
     border-radius: 1rem;
 }
+.display-7
+{
+    font-family: Arial;
+    font-size: 2rem;
+}
+.display-8 {
+    font-family: Arial;
+    font-size: 1.7rem;
+}
+.display-9 {
+    font-family: Arial;
+    font-size: 1.4rem;
+}
+.display-10 {
+    font-family: Arial;
+    font-size: 1.1rem;
+}
+
+.display-blue-7 {
+    color: blue;
+    font-family: Arial;
+    font-size: 2rem;
+}
+
+.display-blue-8 {
+    color: blue;
+    font-family: Arial;
+    font-size: 1.7rem;
+}
+
+.display-blue-9 {
+    color: blue;
+    font-family: Arial;
+    font-size: 1.4rem;
+}
+
+.display-blue-10 {
+    color: blue;
+    font-family: Arial;
+    font-size: 1.1rem;
+}
+.bg-silver{
+    background-color: silver;
+}

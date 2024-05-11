@@ -1,6 +1,7 @@
 ﻿@page
 @model Tests.Pages.AddingPages.AddTestPageModel
 @{
+
 }
 
 <div class="container">
@@ -10,10 +11,25 @@
                 <label asp-for="AddingTest.TestTitle"></label>
                 <input asp-for="AddingTest.TestTitle" class="form-control" name="TestTitle" required>
             </div>
-            <div>
-                <label asp-for="AddingTest.Author"></label>
-                <input asp-for="AddingTest.Author" class="form-control" name="Author" required>
-            </div>
+            @if (!String.IsNullOrEmpty(Model.CurrentUserName))
+            {
+                <div>
+                    <label asp-for="AddingTest.Author"></label>
+                    <input asp-for="AddingTest.Author" class="form-control" name="Author" readonly required value="@Model.CurrentUserName">
+                </div>
+            }
+            else
+            {
+                <div>
+                    <label asp-for="AddingTest.Author"></label>
+                    <input asp-for="AddingTest.Author" class="form-control" name="Author" readonly required value="Вход не выполнен">
+                    <div class="d-flex justify-content-around">
+                        <a class="btn btn-info text-dark flex-fill my-1 me-1" asp-area="Identity" asp-page="/Account/Register">Зарегистрироваться</a>
+                        <a class="btn btn-info text-dark flex=fill my-1 ms-1" asp-area="Identity" asp-page="/Account/Login">Войти в аккаунт</a>
+                    </div>
+                   
+                </div>
+            }
             <div>
                 <label asp-for="AddingTest.DifficultyLevel"></label>
                 <select asp-for="AddingTest.DifficultyLevel" class="form-control" name="DifficultyLevel" required>

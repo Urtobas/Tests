@@ -17,19 +17,27 @@ namespace Tests.Pages.AddingPages
         }
         [BindProperty]
         public Test AddingTest { get; set; }
-
+        public string? CurrentUserName { get; set; }
 
         public IEnumerable<DifficultyLevel> Levels { get; set; }
         public IEnumerable<ProgramLanguage> Languages { get; set; }
 
         public void OnGet()
-        {
-
+        { 
+            try
+            {
+                CurrentUserName = HttpContext.User.Identity.Name;
+            }
+            catch
+            {
+                CurrentUserName = "";
+            }
         }
 
         public IActionResult OnPost()
         {
             bool flag = true;
+            if (AddingTest.Author == "Вход не выполнен") flag = false;
 
             foreach (var e in _context.Tests)
             {
@@ -48,7 +56,9 @@ namespace Tests.Pages.AddingPages
             }
             else
             {
-                TempData["ErrorMessage"] = $"Возникла ошибка при добавлении теста. Возможно тест с таким названием уже существует в базе данных. Вернитесь на страницу добавления теста и попробуйте снова. ";
+                TempData["ErrorMessage"] = $"Возникла ошибка при добавлении теста. " +
+                    $"Возможно тест с таким названием уже существует в базе данных или вы не выполнили вход в свой аккаунт. " +
+                    $"Вернитесь на страницу добавления теста и попробуйте снова. ";
 
                 string errorMessages = "";
                 // проходим по всем элементам в ModelState

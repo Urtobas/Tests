@@ -10,11 +10,10 @@ namespace Tests.Pages
     public class SolvingTestPageModel : PageModel
     {
         private readonly ApplicationDbContext _context;
-        //private readonly UserManager<TestingUser> _userManager;
-        public SolvingTestPageModel(ApplicationDbContext context/*, UserManager<TestingUser> userManager*/)
+        private readonly UserManager<TestingUser> _userManager;
+        public SolvingTestPageModel(ApplicationDbContext context)
         {
             _context = context;
-            //_userManager = userManager;
             ResultDict = new();
         }
 
@@ -57,7 +56,8 @@ namespace Tests.Pages
             for (int i = 0; i < Count; i++)
             {
                 ResultDict.Add(i+1, answers[i]);
-                res += "вопрос №" + ResultDict.ElementAt(i).Key + " - " + ResultDict.ElementAt(i).Value + "</br>";
+                if(answers[i] == Blocks.ElementAt(i).RightAnswerNum) res += "<span class='text-success'>" + "вопрос №" + ResultDict.ElementAt(i).Key + " - " + ResultDict.ElementAt(i).Value + "</span></br>";
+                else res += "<span class='text-danger text-decoration-line-through'>" + "вопрос №" + ResultDict.ElementAt(i).Key + " - " + ResultDict.ElementAt(i).Value + "</span>" + " " + Blocks.ElementAt(i).RightAnswerNum + "</br>";
                 if (answers[i] == Blocks.ElementAt(i).RightAnswerNum)
                 {
                     CountRightAnswers++;
