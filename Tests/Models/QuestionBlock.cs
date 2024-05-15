@@ -29,11 +29,8 @@ namespace Tests.Models
         public int TestId { get; set; } // Внешний ключ
         //public Test Test { get; set; } // Навигационное свойство
 
-
-        //[Required, Display(Name = "Выбрать тест, к которому будут добавлен блок вопрос-ответ")]
-        //public ICollection<Test> TestId { get; set; }
-
-
-
+        [Required, Display(Name = "Имя автора вопросв")]
+        public string AuthorName { get; set; } // имя (почта) автора вопросов
+        
     }
 }

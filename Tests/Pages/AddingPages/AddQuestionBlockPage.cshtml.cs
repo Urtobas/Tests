@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -10,9 +11,12 @@ namespace Tests.Pages
     {
 
         private readonly ApplicationDbContext _context;
-        public AddQuestionBlockPageModel(ApplicationDbContext context)
+        private readonly UserManager<IdentityUser> _userManager;
+        public AddQuestionBlockPageModel(ApplicationDbContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
+
             Tests = _context.Tests;
         }
         [BindProperty]
@@ -24,6 +28,8 @@ namespace Tests.Pages
 
         public void OnGet()
         {
+            var user = HttpContext.User; 
+            //if(id != null) AddingQuestionBlock.TestId = (int)id;
         }
 
         public IActionResult OnPost()

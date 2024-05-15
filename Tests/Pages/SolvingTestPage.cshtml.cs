@@ -74,8 +74,7 @@ namespace Tests.Pages
                     DatePassing = DateTime.Now.Date,
                     RightAnswersCount = CountRightAnswers,
                     WrongAnswersCount = ResultDict.Count() - CountRightAnswers,
-                    TestId = CurrentTest.Id,
-                    TestingUserId = user.Id
+                    TestId = CurrentTest.Id
                 };
                 _context.TestResults.Add(result);
                 _context.SaveChanges();

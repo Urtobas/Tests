@@ -27,9 +27,18 @@ namespace Tests.Pages
 
         public void OnGet()
         {
-            Languages = _context.ProgramLanguages.Select(op => op.LanguageTitle);
-            DifficaltyLevels = _context.DifficultyLevels.Select(op => op.Level);
-            SelectedTests = _context.Tests;
+            try
+            {
+                Languages = _context.ProgramLanguages.Select(op => op.LanguageTitle);
+                DifficaltyLevels = _context.DifficultyLevels.Select(op => op.Level);
+                SelectedTests = _context.Tests;
+            }
+            catch
+            {
+                Languages = new List<string>();
+                DifficaltyLevels =  new List<string>();
+                SelectedTests = _context.Tests;
+            }
         }
 
         public void OnPost()

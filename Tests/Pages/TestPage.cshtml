@@ -38,10 +38,7 @@
             <h2>Тесты</h2>
             @if (Model.SelectedTests.Count() == 0)
             {
-                <div class="display-9">По заданным критериям - <br/>
-                    язык программирования - <span class="fw-bold text-info">@Model.InputModel.Language</span>, 
-                    уровень сложности  - <span class="fw-bold text-info">@Model.InputModel.Level</span> <br />
-                    тестов не найдено</div>
+                    <div class="display-9">По заданным критериям тестов не найдено</div>
             }
             else
             {
@@ -50,7 +47,6 @@
                     <a class="btn btn-outline-secondary mx-1" asp-page="SolvingTestPage" asp-route-id="@e.Id">@e.TestTitle</a>
                 }
             }
-            
         </div>
     </div>
 </div>
