@@ -5,11 +5,13 @@
 
 @if (Model.CurrentTest == null)
 {
-    <div class="alert">CurrentTest - NULL</div>
+    <div class="alert">Произошла какая-то ошибка с загрузкой теста, <a class="link" asp-page="TestPage">вернитесь</a> на страницу выбора теста</div>
 }
 
 else
 {
+    <h1 class="display-7">@Model.CurrentTest.TestTitle</h1>
+    <hr class="my-2 border border-2 border-primary"/>
     <form method="post" class="col-12 col-md-10 offset-md-1">
         @for(int i = 0; i < Model.Count; i++)
         {
@@ -36,9 +38,10 @@ else
                 </div>
             </div>
         }
-        <input class="btn btn-outline-primary form-control" type="submit" value="Отправить тест">
+        <input class="btn btn-outline-primary form-control" type="submit" value="Отправить тест на проверку">
     </form>   
 }
+<hr class="my-4 border border-2 border-secondary" />
 <div class="col-10 offset-1 bg-silver border border-2 rounded-3 border-success my-2 p-2">
     <div class="display-7 text-success">Результаты теста</div>
     <div class="">@Html.Raw(TempData["result"]) </div>

@@ -1,7 +1,11 @@
 ﻿@page "{id?}"
 @model Tests.Pages.AddQuestionBlockPageModel
 @{
-    var user = HttpContext.User;
+    string userName = "";
+    if (HttpContext.User != null)
+    {
+        userName = HttpContext.User.Identity.Name;
+    }
 }
 
 
@@ -19,7 +23,7 @@
             </div>
             <div>
                 <input asp-for="AddingQuestionBlock.AuthorName" class="form-control mb-4"
-                       id="AuthorName" name="AuthorName" required readonly value="@user.Identity.Name" />
+                       id="AuthorName" name="AuthorName" required readonly value="@userName" />
             </div>
             <div>
                 <label asp-for="AddingQuestionBlock.Question"></label>
@@ -43,10 +47,15 @@
             </div>
             <div>
                 <label asp-for="AddingQuestionBlock.RightAnswerNum"></label>
-                <input asp-for="AddingQuestionBlock.RightAnswerNum" class="form-control mb-2" type="number" id="RightAnswerNum" name="RightAnswerNum" required>
+                <input asp-for="AddingQuestionBlock.RightAnswerNum" class="form-control mb-2" type="number" min="1" max="4" id="RightAnswerNum" name="RightAnswerNum" required>
             </div>
             <button class="btn btn-secondary form-control" type="submit">Сохранить</button>
+            @if (!String.IsNullOrEmpty(TempData["SuccessMessage"].ToString()))
+            {
+                <div class="col-8 alert-success p-2 m-2">@TempData["SuccessMessage"]</div>
+            }
+
         </form>
-        <div class="col-8 offset-2 alert-success">@TempData["SuccessMessage"]</div>
+
     </div>
 </div>

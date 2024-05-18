@@ -65,16 +65,18 @@ namespace Tests.Pages
             }
             TempData["result"] = res;
             TempData["RightAnswers"] = CountRightAnswers;
-            IdentityUser? user = _context.Users.FirstOrDefault(op => op.Email == HttpContext.User.Identity.Name);
+            string userEmail = HttpContext.User?.Identity?.Name ?? "гость"; // если null, то вместо почты "гость"
+            IdentityUser? user = _context.Users.FirstOrDefault(op => op.Email == userEmail);
             
             if(user != null)
             {
                 TestResult result = new()
                 {
-                    DatePassing = DateTime.Now.Date,
+                    DatePassing = DateTime.Now,
                     RightAnswersCount = CountRightAnswers,
                     WrongAnswersCount = ResultDict.Count() - CountRightAnswers,
-                    TestId = CurrentTest.Id
+                    TestId = CurrentTest.Id,
+                    TestingUserId = user.Id
                 };
                 _context.TestResults.Add(result);
                 _context.SaveChanges();

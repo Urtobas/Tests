@@ -28,19 +28,27 @@ namespace Tests.Pages
 
         public void OnGet()
         {
-            var user = HttpContext.User; 
-            //if(id != null) AddingQuestionBlock.TestId = (int)id;
+            var user = HttpContext.User;
+            TempData["SuccessMessage"] = "";
         }
 
         public IActionResult OnPost()
         {
             if (ModelState.IsValid)
             {
-                
-                _context.Add(AddingQuestionBlock);
-                _context.SaveChanges();
-                TempData["SuccessMessage"] = "Данные успешно добавлены";
-                return Page();
+                try
+                {
+                    _context.Add(AddingQuestionBlock);
+                    _context.SaveChanges();
+                    TempData["SuccessMessage"] = "Данные успешно добавлены";
+                    return Page();
+                }
+                catch
+                {
+                    TempData["SuccessMessage"] = "Ошибка";
+                    return Page();
+                }
+
             }
             else
             {

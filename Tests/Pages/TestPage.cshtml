@@ -31,7 +31,6 @@
                     <input class="btn btn-outline-secondary form-control" type="submit" />
                 </div>
             </form>
-            <hr class="my-4" />
         </div>
 
         <div class="col-8">
@@ -44,7 +43,7 @@
             {
                 @foreach (var e in Model.SelectedTests)
                 {
-                    <a class="btn btn-outline-secondary mx-1" asp-page="SolvingTestPage" asp-route-id="@e.Id">@e.TestTitle</a>
+                    <a class="btn btn-outline-info m-1" asp-page="SolvingTestPage" asp-route-id="@e.Id">@e.TestTitle</a>
                 }
             }
         </div>
