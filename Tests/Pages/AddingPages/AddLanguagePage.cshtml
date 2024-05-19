@@ -4,9 +4,12 @@
 }
 
 
-<div class="container">
+<div class="container-fluid">
     <div class="row">
-        <form method="post" class="col-6">
+            <div class="col-3">
+        <img src="~/icons/programming.svg" class="img-fluid"/>
+    </div>
+        <form method="post" class="col-5">
             <div>
                 <label asp-for="Language.LanguageTitle"></label>
                 <input asp-for="Language.LanguageTitle" class="form-control" id="LanguageTitle" name="LanguageTitle" required>
@@ -14,12 +17,12 @@
             <button class="btn btn-secondary form-control" type="submit">Добавить</button>
         </form>
 
-        <div class="col-6">
+        <div class="col-4">
             <div class="container">
                 <div class="row">
                     @foreach (var e in Model.Languages)
                     {
-                        <div class="col-7">
+                        <div class="col-5">
                             <a href="#" class="btn btn-secondary form-control m-1">@e.LanguageTitle</a>
                         </div>
                         <div class="col-5">

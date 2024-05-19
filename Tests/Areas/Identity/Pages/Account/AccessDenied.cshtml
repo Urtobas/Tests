@@ -1,11 +1,11 @@
 ﻿@page
-
-@model ErrorModel
+@model AccessDeniedModel
 @{
-    ViewData["Title"] = "Error";
+    ViewData["Title"] = "Доступ запрещен";
 }
 
-<h1 class="display-7 text-danger text-center">Ошибка</h1>
+
+<h1 class="display-7 text-danger text-center">@ViewData["Title"]</h1>
 <div class="col-10 offset-1">
     <div class="container-fluid">
         <div class="row">
@@ -19,16 +19,4 @@
 
         </div>
     </div>
-    </div>
-
-
-
-
-@* @if (Model.ShowRequestId)
-{
-    <p>
-        <strong>Request ID:</strong> <code>@Model.RequestId</code>
-    </p>
-} *@
-
-
+</div>

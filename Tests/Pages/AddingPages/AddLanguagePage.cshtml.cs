@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Tests.Data;
@@ -5,6 +6,7 @@ using Tests.Models;
 
 namespace Tests.Pages
 {
+    [Authorize(Policy = "onlyAdmin")]
     public class AddLanguagePageModel : PageModel
     {
         private readonly ApplicationDbContext _context;
@@ -25,7 +27,6 @@ namespace Tests.Pages
 
         public IActionResult OnPost()
         {
-            //ProgramLanguage? duplicate = _context.ProgramLanguages.FirstOrDefault(op => op.LanguageTitle.Trim().ToUpper() == Language.LanguageTitle.Trim().ToUpper());
             if (Language != null)
             {
                 try

@@ -20,9 +20,10 @@ namespace Tests.Pages
             Tests = _context.Tests;
         }
         [BindProperty]
-        public QuestionBlock AddingQuestionBlock { get; set; }
 
+        public QuestionBlock AddingQuestionBlock { get; set; }
         public IEnumerable<Test> Tests { get; set; }
+        public string? CurrentUserName { get; set;}
 
 
 
@@ -30,11 +31,16 @@ namespace Tests.Pages
         {
             var user = HttpContext.User;
             TempData["SuccessMessage"] = "";
+            if (!string.IsNullOrEmpty(HttpContext.User.Identity.Name))
+            {
+                CurrentUserName = HttpContext.User.Identity.Name;
+            }
+
         }
 
         public IActionResult OnPost()
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && CurrentUserName == AddingQuestionBlock.AuthorName)
             {
                 try
                 {
@@ -45,14 +51,16 @@ namespace Tests.Pages
                 }
                 catch
                 {
-                    TempData["SuccessMessage"] = "Ошибка";
-                    return Page();
+                    TempData["SuccessMessage"] = "Произошла непредвиденная ошибка";
+                    return RedirectToPage("/Error");
                 }
 
             }
             else
             {
-                TempData["ErrorMessage"] = $"Произошла ошибка при добавлении блока вопрос-ответ - {ModelState.IsValid}";
+                TempData["ErrorMessage"] = "Вы не можете добавлять вопросы и ответы, а также редактировать тесты, " +
+                        "созданные другими пользователями" + "</br>";
+
                 string errorMessages = "";
                 // проходим по всем элементам в ModelState
                 foreach (var item in ModelState)
@@ -68,7 +76,7 @@ namespace Tests.Pages
                         }
                     }
                 }
-                TempData["ErrorMessage"] += errorMessages;
+                TempData["ErrorMessage"] += "</br>" + "</hr>" + errorMessages;
                 return RedirectToPage("/Error");
             }
         }

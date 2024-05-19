@@ -15,7 +15,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 builder.Services.AddRazorPages();
 builder.Services.AddAuthorization(op =>
 {
-    op.AddPolicy("admin", op =>op.RequireClaim("Status","admin"));
+    op.AddPolicy("onlyAdmin", op =>op.RequireClaim("Status","admin"));
 });
 var app = builder.Build();
 

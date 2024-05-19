@@ -1,17 +1,16 @@
 ﻿@page "{id?}"
 @model Tests.Pages.AddQuestionBlockPageModel
 @{
-    string userName = "";
-    if (HttpContext.User != null)
-    {
-        userName = HttpContext.User.Identity.Name;
-    }
+
 }
 
 
-<div class="container">
+<div class="container-fluid">
     <div class="row">
-        <form method="post" class="col-8 offset-2">
+        <div class="col-3">
+            <img src="~/icons/question.svg" class="img-fluid"/>
+        </div>
+        <form method="post" class="col-9">
             <div>
                 <label asp-for="AddingQuestionBlock.TestId"></label>
                 <select class="form-control mb-4" name="TestId">
@@ -23,7 +22,7 @@
             </div>
             <div>
                 <input asp-for="AddingQuestionBlock.AuthorName" class="form-control mb-4"
-                       id="AuthorName" name="AuthorName" required readonly value="@userName" />
+                       id="AuthorName" name="AuthorName" required readonly value="@Model.CurrentUserName" />
             </div>
             <div>
                 <label asp-for="AddingQuestionBlock.Question"></label>

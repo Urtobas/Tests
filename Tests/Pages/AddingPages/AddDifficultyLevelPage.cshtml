@@ -5,7 +5,10 @@
 
 <div class="container">
     <div class="row">
-        <form method="post" class="col-6">
+        <div class="col-3">
+            <img src="~/icons/difficulty.svg" class="img-fluid"/>
+        </div>
+        <form method="post" class="col-5">
             <div>
                 <label asp-for="DifficultyLevelBP.Level"></label>
                 <input asp-for="DifficultyLevelBP.Level" class="form-control" id="Level" name="Level" required>
@@ -13,7 +16,7 @@
             <button class="btn btn-secondary form-control" type="submit">Сохранить</button>
         </form>
 
-        <div class="col-6">
+        <div class="col-4">
             <div class="container">
                 <div class="row">
                     @foreach (var e in Model.DifficultyLevels)
