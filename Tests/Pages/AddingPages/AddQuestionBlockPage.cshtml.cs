@@ -20,8 +20,9 @@ namespace Tests.Pages
             Tests = _context.Tests;
         }
         [BindProperty]
-
         public QuestionBlock AddingQuestionBlock { get; set; }
+
+
         public IEnumerable<Test> Tests { get; set; }
         public string? CurrentUserName { get; set;}
 

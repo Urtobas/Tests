@@ -6,7 +6,7 @@ using Tests.Models;
 
 namespace Tests.Pages
 {
-    [Authorize(Policy = "onlyAdmin")]
+
     public class AddLanguagePageModel : PageModel
     {
         private readonly ApplicationDbContext _context;
@@ -27,7 +27,8 @@ namespace Tests.Pages
 
         public IActionResult OnPost()
         {
-            if (Language != null)
+            bool flag = HttpContext.User.HasClaim(op => op.Type == "status" && op.Value == "admin");
+            if (Language != null && flag)
             {
                 try
                 {
@@ -38,31 +39,44 @@ namespace Tests.Pages
                 }
                 catch(Exception ex)
                 {
-                    TempData["ErrorMessage"] = $"Ошибка при добавлении языка программирования({ex})";
+                    TempData["ErrorMessage"] = "Произошла ошибка при добавления языка программирования. " +
+                        "Возможно у вас недостаточно прав для выполения данного действия. Для получения таких прав обратитесь к администратору" + "</br>";
+                    TempData["ErrorMessage"] += $"Список ошибок - {ex}";
                     return RedirectToPage("Error");
                 }
             }
             else
             {
-                TempData["ErrorMessage"] = "Ошибка при добавлении языка программирования (Language = null)";
+                TempData["ErrorMessage"] = "Произошла ошибка при добавления языка программирования. " +
+                        "Возможно у вас недостаточно прав для выполения данного действия. Для получения таких прав обратитесь к администратору" + "</br>";
                 return RedirectToPage("Error");
             }
         }
 
-        public void OnGetRemoveLanguage(int? id)
+        public IActionResult OnGetRemoveLanguage(int? id)
         {
+            bool flag = HttpContext.User.HasClaim(op => op.Type == "status" && op.Value == "admin");
             ProgramLanguage? language = _context.ProgramLanguages.FirstOrDefault(op => op.Id == id);
-            if(language != null)
+            if(language != null && flag)
             {
                 try
                 {
                     _context.ProgramLanguages.Remove(language);
                     _context.SaveChanges();
+                    return Page();
                 }
                 catch
                 {
-                    TempData["ErrorMessage"] = "Ошибка при удалении языка программирования";
+                    TempData["ErrorMessage"] = "Произошла ошибка при удлении языка программирования. " +
+                       "Возможно у вас недостаточно прав для выполения данного действия. Для получения таких прав обратитесь к администратору" + "</br>";
+                    return RedirectToPage("Error");
                 }
+            }
+            else
+            {
+                TempData["ErrorMessage"] = "Произошла ошибка при удлении языка программирования. " +
+                      "Возможно у вас недостаточно прав для выполения данного действия. Для получения таких прав обратитесь к администратору" + "</br>";
+                return RedirectToPage("Error");
             }
         }
     }

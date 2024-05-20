@@ -7,7 +7,7 @@
 <div class="container">
     <div class="row">
         <div class="col-3">
-            <img src="~/icons/testing.svg" class="img-fluid"/>
+            <img src="~/icons/testing.svg" class="img-fluid" />
         </div>
         <form method="post" class="col-9">
             <div>
@@ -23,15 +23,14 @@
             }
             else
             {
-                <div>
-                    <label asp-for="AddingTest.Author"></label>
-                    <input asp-for="AddingTest.Author" class="form-control" name="Author" readonly required value="Вход не выполнен">
-                    <div class="d-flex justify-content-around">
-                        <a class="btn btn-info text-dark flex-fill my-1 me-1" asp-area="Identity" asp-page="/Account/Register">Зарегистрироваться</a>
-                        <a class="btn btn-info text-dark flex=fill my-1 ms-1" asp-area="Identity" asp-page="/Account/Login">Войти в аккаунт</a>
+                <div class="border border-2 rounded-2 bg-warning my-3">
+                    <div class=" me-1 p-1 text-danger">Добавление теста станет возможным после регистрации или входа в свою учетную запись</div>
+                    <div class="d-flex justify-content-center">
+                        <a class="btn btn-outline-light text-dark flex-fill m-1" asp-area="Identity" asp-page="/Account/Register">Зарегистрироваться</a>
+                        <a class="btn btn-outline-light text-dark flex=fill m-1" asp-area="Identity" asp-page="/Account/Login">Войти в аккаунт</a>
                     </div>
-                   
                 </div>
+                    
             }
             <div>
                 <label asp-for="AddingTest.DifficultyLevel"></label>

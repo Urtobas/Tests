@@ -20,10 +20,28 @@
                     }
                 </select>
             </div>
-            <div>
-                <input asp-for="AddingQuestionBlock.AuthorName" class="form-control mb-4"
-                       id="AuthorName" name="AuthorName" required readonly value="@Model.CurrentUserName" />
-            </div>
+
+
+
+            @if (!String.IsNullOrEmpty(Model.CurrentUserName))
+            {
+                <div>
+                    <label asp-for="AddingQuestionBlock.AuthorName"></label>
+                    <input asp-for="AddingQuestionBlock.AuthorName" class="form-control" name="Author" readonly required value="@Model.CurrentUserName">
+                </div>
+            }
+            else
+            {
+                <div>
+                    <label asp-for="AddingQuestionBlock.AuthorName"></label>
+                    <input asp-for="AddingQuestionBlock.AuthorName" class="form-control" name="Author" readonly required value="Вход не выполнен">
+                    <div class="d-flex justify-content-around">
+                        <a class="btn btn-warning text-dark flex-fill my-1 me-1" asp-area="Identity" asp-page="/Account/Register">Зарегистрироваться</a>
+                        <a class="btn btn-warning text-dark flex=fill my-1 ms-1" asp-area="Identity" asp-page="/Account/Login">Войти в аккаунт</a>
+                    </div>
+                </div>
+            }
+
             <div>
                 <label asp-for="AddingQuestionBlock.Question"></label>
                 <textarea asp-for="AddingQuestionBlock.Question" class="form-control mb-4" id="Question" name="Question" required></textarea>
