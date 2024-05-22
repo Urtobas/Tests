@@ -2,9 +2,29 @@
 @model Tests.Pages.UserStatisticModel
 @{
 }
+<div class="display-7">Результаты прохождения тестов для пользователя @Model.SelectedUser.AliasName</div>
+<table class="table table-sm">
+    <tr>
+        <td class="display-9">Общее число прохождения тестов</td>
+        <td class="display-9 text-primary">@Model.TestsCount</td>
+    </tr>
+        <tr>
+        <td class="display-9">Правильных ответов</td>
+        <td class="display-9 text-success">@Model.TotalRightAnswersCount</td>
+    </tr>
+        <tr>
+        <td class="display-9">Неправильных ответов</td>
+        <td class="display-9 text-danger">@Model.TotalWrongAnswersCount</td>
+    </tr>
+    <tr>
+        <td class="display-9">Средний итоговый бал</td>
+        <td class="display-9 text-dark">@Model.AverageResult</td>
+    </tr>
+</table>
+
 
 <table class="table table-striped table-secondary table-hover table-sm">
-    <caption class="display-7" style="caption-side:top;">Результаты прохождения тестов для пользователя @Model.SelectedUser.AliasName</caption>
+    <caption class="display-8" style="caption-side:top;">Таблица результатов прохождения тестов пользователя @Model.SelectedUser.AliasName</caption>
     <thead>
         <tr>
             <td class="bg-primary text-white fw-bold">Дата</td>

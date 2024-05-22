@@ -11,6 +11,11 @@ namespace Tests.Pages
         public IEnumerable<TestResult>? TestResults { get; set; }
         public List<StatisticModel> StatisticModels { get; set; }
         public TestingUser? SelectedUser { get; set; }
+        public int TestsCount { get; set; }
+        public int TotalAnswersCount { get; set; }
+        public int TotalRightAnswersCount { get; set; }
+        public int TotalWrongAnswersCount { get; set; }
+        public double AverageResult { get; set; }
 
         public UserStatisticModel(ApplicationDbContext context)
         {
@@ -23,6 +28,7 @@ namespace Tests.Pages
             StatisticModels = new();
             if (SelectedUser != null && TestResults != null)
             {
+                
                 foreach (var e in TestResults)
                 {
                     StatisticModel statMod = new StatisticModel()
@@ -37,6 +43,12 @@ namespace Tests.Pages
                     statMod.RelativeResult = 1;
                     StatisticModels.Add(statMod);
                 }
+                TestsCount = StatisticModels.Count;
+                
+                TotalRightAnswersCount = StatisticModels.Sum(op => op.RightAnswersCount);
+                TotalWrongAnswersCount = StatisticModels.Sum(op => op.WrongAnswersCount);
+                TotalAnswersCount = TotalRightAnswersCount + TotalWrongAnswersCount;
+                AverageResult = Math.Round(((double)TotalRightAnswersCount / TotalAnswersCount), 2) * 100; 
                 return Page();
             }
             else return RedirectToPage("/Error");
