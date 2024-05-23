@@ -21,6 +21,7 @@ namespace Tests.Pages
         public Test? CurrentTest { get; set; }
         public int Count { get; set; }
         public int CountRightAnswers { get; set; }
+        public double Score { get; set; }
         public IEnumerable<QuestionBlock> Blocks { get; set; }
         public Dictionary<int, int> ResultDict { get; set; }
 
@@ -28,6 +29,7 @@ namespace Tests.Pages
 
         public void OnGet(int? id)
         {
+            TempData["Title"] = "Параметры теста:";
             CurrentTest = _context.Tests.FirstOrDefault(op => op.Id == id);
             if (CurrentTest != null)
             {
@@ -47,7 +49,7 @@ namespace Tests.Pages
             answer11, answer12, answer13, answer14, answer15, answer16, answer17, answer18, answer19, answer20 };
             
             string res = "";
-            
+            TempData["Title"] = "Результаты прохождения теста";
 
             if (CurrentTest != null) Blocks = _context.QuestionBlocks.Where(op => op.TestId == CurrentTest.Id);
             else return RedirectToPage("/Error");
@@ -65,6 +67,7 @@ namespace Tests.Pages
             }
             TempData["result"] = res;
             TempData["RightAnswers"] = CountRightAnswers;
+            Score = Math.Round((double)CountRightAnswers / (double)Count, 2)  * 100;
             string userEmail = HttpContext.User?.Identity?.Name ?? "гость"; // если null, то вместо почты "гость"
             IdentityUser? user = _context.Users.FirstOrDefault(op => op.Email == userEmail);
             

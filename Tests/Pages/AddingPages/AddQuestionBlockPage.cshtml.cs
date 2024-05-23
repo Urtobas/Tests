@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Security.Claims;
 using Tests.Data;
 using Tests.Models;
 
@@ -30,24 +31,39 @@ namespace Tests.Pages
 
         public void OnGet()
         {
-            var user = HttpContext.User;
+            ClaimsPrincipal? user = HttpContext.User;
             TempData["SuccessMessage"] = "";
-            if (!string.IsNullOrEmpty(HttpContext.User.Identity.Name))
+            if (user != null)
             {
                 CurrentUserName = HttpContext.User.Identity.Name;
             }
-
         }
 
         public IActionResult OnPost()
         {
-            if (ModelState.IsValid && CurrentUserName == AddingQuestionBlock.AuthorName)
+            ClaimsPrincipal? user = HttpContext.User;
+            TempData["SuccessMessage"] = "";
+            if (user != null)
+            {
+                try
+                {
+                    CurrentUserName = HttpContext.User.Identity.Name;
+                }
+                catch
+                {
+                    TempData["SuccessMessage"] = "Произошла непредвиденная ошибка";
+                    return RedirectToPage("/Error");
+                }
+            }
+            Test? selectedTest = _context.Tests.FirstOrDefault(op => op.Id == AddingQuestionBlock.TestId);
+            if (ModelState.IsValid && CurrentUserName == selectedTest.Author)
             {
                 try
                 {
                     _context.Add(AddingQuestionBlock);
                     _context.SaveChanges();
                     TempData["SuccessMessage"] = "Данные успешно добавлены";
+                    AddingQuestionBlock = new();
                     return Page();
                 }
                 catch
@@ -55,7 +71,6 @@ namespace Tests.Pages
                     TempData["SuccessMessage"] = "Произошла непредвиденная ошибка";
                     return RedirectToPage("/Error");
                 }
-
             }
             else
             {

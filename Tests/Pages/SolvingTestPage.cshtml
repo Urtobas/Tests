@@ -3,11 +3,24 @@
 @{
 }
 
+<div class="col-10 offset-1 bg-silver border border-2 rounded-3 border-success my-2 p-2">
+    <div class="display-7 text-success">@TempData["Title"]</div>
+    <div class="">@Html.Raw(TempData["result"]) </div>
+    <div class="display-blue-9">Количество вопросов - @Html.Raw(Model.Blocks.Count()) </div>
+    <div class="display-blue-9">Число правильных ответов - @Html.Raw(Model.CountRightAnswers) </div>
+    <div class="display-blue-9">Оценка за тест - @Html.Raw(Model.Score) </div>
+    @if(TempData["Title"].ToString() != "Параметры теста:")
+    {
+    <a class="form-control btn btn-secondary display-blue-9" asp-page="SolvingTestPage" asp-route-od="@Model.CurrentTest.Id">Пройти тест заново</a>
+    }
+
+   
+</div>
+
 @if (Model.CurrentTest == null)
 {
     <div class="alert">Произошла какая-то ошибка с загрузкой теста, <a class="link" asp-page="TestPage">вернитесь</a> на страницу выбора теста</div>
 }
-
 else
 {
     <h1 class="display-7">@Model.CurrentTest.TestTitle</h1>
@@ -42,11 +55,6 @@ else
     </form>   
 }
 <hr class="my-4 border border-2 border-secondary" />
-<div class="col-10 offset-1 bg-silver border border-2 rounded-3 border-success my-2 p-2">
-    <div class="display-7 text-success">Результаты теста</div>
-    <div class="">@Html.Raw(TempData["result"]) </div>
-    <div class="display-blue-9">Количество вопросов - @Html.Raw(Model.Blocks.Count()) </div>
-    <div class="display-blue-9">Число правильных ответов - @Html.Raw(Model.CountRightAnswers) </div>
-</div>
+
 
 

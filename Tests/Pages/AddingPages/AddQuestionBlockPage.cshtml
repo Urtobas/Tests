@@ -11,6 +11,10 @@
             <img src="~/icons/question.svg" class="img-fluid"/>
         </div>
         <form method="post" class="col-9">
+            @if (!String.IsNullOrEmpty(TempData["SuccessMessage"].ToString()))
+            {
+                <div class="col-8 display-8 alert-success p-2 m-2">@TempData["SuccessMessage"]</div>
+            }
             <div>
                 <label asp-for="AddingQuestionBlock.TestId"></label>
                 <select class="form-control mb-4" name="TestId">
@@ -21,20 +25,18 @@
                 </select>
             </div>
 
-
-
             @if (!String.IsNullOrEmpty(Model.CurrentUserName))
             {
                 <div>
                     <label asp-for="AddingQuestionBlock.AuthorName"></label>
-                    <input asp-for="AddingQuestionBlock.AuthorName" class="form-control" name="Author" readonly required value="@Model.CurrentUserName">
+                    <input asp-for="AddingQuestionBlock.AuthorName" class="form-control" name="AuthorName" readonly required value="@Model.CurrentUserName">
                 </div>
             }
             else
             {
                 <div>
                     <label asp-for="AddingQuestionBlock.AuthorName"></label>
-                    <input asp-for="AddingQuestionBlock.AuthorName" class="form-control" name="Author" readonly required value="Вход не выполнен">
+                    <input asp-for="AddingQuestionBlock.AuthorName" class="form-control" readonly value="Вход не выполнен">
                     <div class="d-flex justify-content-around">
                         <a class="btn btn-warning text-dark flex-fill my-1 me-1" asp-area="Identity" asp-page="/Account/Register">Зарегистрироваться</a>
                         <a class="btn btn-warning text-dark flex=fill my-1 ms-1" asp-area="Identity" asp-page="/Account/Login">Войти в аккаунт</a>
@@ -67,11 +69,6 @@
                 <input asp-for="AddingQuestionBlock.RightAnswerNum" class="form-control mb-2" type="number" min="1" max="4" id="RightAnswerNum" name="RightAnswerNum" required>
             </div>
             <button class="btn btn-secondary form-control" type="submit">Сохранить</button>
-            @if (!String.IsNullOrEmpty(TempData["SuccessMessage"].ToString()))
-            {
-                <div class="col-8 alert-success p-2 m-2">@TempData["SuccessMessage"]</div>
-            }
-
         </form>
 
     </div>
