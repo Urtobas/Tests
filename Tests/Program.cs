@@ -17,6 +17,8 @@ builder.Services.AddAuthorization(op =>
 {
     op.AddPolicy("onlyAdmin", op =>op.RequireClaim("Status","admin"));
 });
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(op => op.IdleTimeout = TimeSpan.FromSeconds(10));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -31,6 +33,7 @@ else
     app.UseHsts();
 }
 
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
@@ -40,5 +43,5 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapRazorPages();
-
+app.UseSession();
 app.Run();
