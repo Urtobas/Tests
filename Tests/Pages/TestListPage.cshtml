@@ -16,18 +16,16 @@
                         <td class="bg-primary text-white fw-bold">Название теста</td>
                         <td class="bg-primary text-white fфw-bold">Автор</td>
                         <td class="bg-primary text-white fw-bold">Уровень сложности</td>
-                        <td class="bg-primary text-white fw-bold">Кол-во вопросов</td>
+                        <td class="bg-primary text-white fw-bold">Язык</td>
                     </tr>
                 </thead>
                 @foreach (var e in Model.TestList)
                 {
                     <tr>
-                        <td><a class="link" asp-page="/SolvingTestPage" asp-route-id="@e.Id">@e.TestTitle</a></td>
+                        <td><a class="text-decoration-none" asp-page="/SolvingTestPage" asp-route-id="@e.Id">@e.TestTitle</a></td>
                         <td>@e.Author</td>
                         <td>@e.DifficultyLevel</td>
-                        <td title="Посмортеть статистику пользователя">
-                            <a asp-page="/TestPage" asp-route-id="@e.Id"><img src="~/icons/testing.svg" style="height:1.5rem" /></a>
-                        </td>
+                        <td title="Посмортеть статистику пользователя">@e.Language</td>
                     </tr>
                 }
             </table>

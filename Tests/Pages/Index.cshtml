@@ -1,4 +1,4 @@
-﻿@page 
+﻿@page
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
@@ -6,47 +6,51 @@
 }
 <div class="container">
     <div class="row">
-        <div class="card col-4 bg-silver">
-            <div class="card-body">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-6"><a asp-page="TestPage"><img class="img-fluid" src="~/icons/testing.svg" style="max-height:12rem;" /></a></div>
-                        <div class="col-6"><a class="fw-bold text-decoration-none text-dark display-9" asp-page="/AddingPages/AddingPanel">Переход на страницу выбора теста</a></div>
+        <div class="col-md-6 col-lg-4 my-1">
+            <div class="card bg-silver h-100">
+                <div class="card-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-6"><a asp-page="TestPage"><img class="img-fluid" src="~/icons/testing.svg" style="max-height:12rem;" /></a></div>
+                            <div class="col-6"><a class="text-decoration-none text-dark display-10" asp-page="/AddingPages/AddingPanel">Переход на страницу выбора теста</a></div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="card col-4 bg-silver">
-            <div class="card-body">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-6"><a asp-page="/AddingPages/AddingPanel"><img class="img-fluid" src="~/icons/settings.svg" style="max-height:12rem;" /></a></div>
-                        <div class="col-6 text-decoration-none text-dark display-9"><a class="fw-bold text-decoration-none text-dark" asp-page="/AddingPages/AddingPanel">Переход на страницу добавления и редактирования тестов</a></div>
+        <div class="col-md-6 col-lg-4 my-1">
+            <div class="card bg-silver h-100">
+                <div class="card-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-6"><a asp-page="/AddingPages/AddingPanel"><img class="img-fluid" src="~/icons/settings.svg" style="max-height:12rem;" /></a></div>
+                            <div class="col-6 text-decoration-none text-dark display-10"><a class="text-decoration-none text-dark" asp-page="/AddingPages/AddingPanel">Переход на страницу добавления и редактирования тестов</a></div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+            </div>
 
-        <div class="card col-4 bg-silver">
-            <div class="card-body">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-6"><a asp-page="/TestListPage"><img class="img-fluid" src="~/icons/list.svg" style="max-height:12rem;" /></a></div>
-                        <div class="col-6 text-decoration-none text-dark display-9"><a class="fw-bold text-decoration-none text-dark" asp-page="/TestList">Список тестов</a></div>
+            <div class="col-md-6 col-lg-4 my-1">
+                <div class="card bg-silver h-100">
+                    <div class="card-body">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-6"><a asp-page="/TestListPage"><img class="img-fluid" src="~/icons/list.svg" style="max-height:12rem;" /></a></div>
+                                <div class="col-6 text-decoration-none text-dark display-10"><a class="text-decoration-none text-dark" asp-page="/TestList">Список тестов</a></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                </div>
+
             </div>
         </div>
-
-    </div>
-</div>
-
-
-
+        <hr class="border border-2 border-secondary "/>
 <div class="container">
     <div class="row">
-        <div class="col-12 bg-silver border border-1 rounded-3 my-4 p-2">
+        <div class="col-12 bg-silver border border-1 rounded-3 my-4 ms-2 p-2">
             @if (Model.RandomTests.Count() > 0)
             {
                 @foreach (var e in Model.RandomTests)
@@ -60,9 +64,11 @@
             {
                 <div><p>Число тестов на @DateTime.Now.ToShortDateString() составляет @Model.TestCount</p></div>
             }
-        </div> 
+        </div>
     </div>
 </div>
+
+      
 
 
 

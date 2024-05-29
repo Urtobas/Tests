@@ -2,25 +2,27 @@
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
 
-<ul class="navbar-nav">
-@if (SignInManager.IsSignedIn(User))
-{
-    <li class="nav-item">
-        <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
-    </li>
-    <li class="nav-item">
-        <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post" >
-            <button  type="submit" class="nav-link btn btn-link text-dark">Logout</button>
-        </form>
-    </li>
-}
-else
-{
-    <li class="nav-item">
+<div class="d-flex">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <a asp-page="/UserPage" class="btn btn-link" title="Перейти в свой личный кабинет (@User.Identity?.Name)">
+            <img src="~/icons/account.svg" style="height:2.2rem;" />
+        </a>
+        <div class="nav-item">
+            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                <button type="submit" class="btn btn-link" title="Выход из учетной записи @User.Identity?.Name">
+                    <img src="~/icons/logout.svg" style="height:2.2rem;" />
+                </button>
+            </form>
+        </div>
+    }
+    else
+    {
+        <div class="nav-item">
             <a class="badge bg-secondary mx-1" asp-area="Identity" asp-page="/Account/Register">Reg</a>
-    </li>
-    <li class="nav-item">
+        </div>
+        <div class="nav-item">
             <a class="badge bg-secondary mx-1" asp-area="Identity" asp-page="/Account/Login">Log</a>
-    </li>
-}
-</ul>
+        </div>
+    }
+</div>

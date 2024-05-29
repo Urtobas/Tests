@@ -1,0 +1,39 @@
+﻿@page
+@model Tests.Pages.UserPageModel
+@{
+}
+<h1>Личная страница пользователя</h1>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-3">
+            <img src="~/icons/list.svg" class="img-fluid" />
+        </div>
+        <div class="col-9">
+            <table class="table table-striped table-secondary table-hover table-sm">
+                <caption class="caption-top">Тесты пользователя</caption>
+                <thead>
+                    <tr class="bg-primary text-white fw-bold">
+                        <th class="bg-primary text-white fw-bold">Название теста</th>
+                        <th class="bg-primary text-white fw-bold">Уровень сложности</th>
+                        <th class="bg-primary text-white fw-bold">Язык</th>
+                    </tr>
+                </thead>
+
+                @foreach (var e in Model.UserTests)
+                {
+                    <tr>
+                        <td><a asp-page="/SolvingTestPage" asp-route-id="@e.Id" class="text-decoration-none">@e.TestTitle</a></td>
+                        <td>@e.DifficultyLevel</td>
+                        <td>@e.Language</td>
+                    </tr>
+                }
+            </table>
+            <div class="d-flex">
+                <a class="display-10 text-decoration-none btn btn-link border border-1 rounded-2" asp-page="/UserStatistic" asp-route-id="@Model.UserId">Посмотреть пройденные тесты</a>
+                <a class="display-10 text-decoration-none btn btn-link border border-1 rounded-2" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Редактировать данные учетной записи @User.Identity?.Name!</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
