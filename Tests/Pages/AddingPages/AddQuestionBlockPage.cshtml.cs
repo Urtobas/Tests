@@ -10,7 +10,6 @@ namespace Tests.Pages
 {
     public class AddQuestionBlockPageModel : PageModel
     {
-
         private readonly ApplicationDbContext _context;
         private readonly UserManager<IdentityUser> _userManager;
         public AddQuestionBlockPageModel(ApplicationDbContext context, UserManager<IdentityUser> userManager)
@@ -23,11 +22,8 @@ namespace Tests.Pages
         [BindProperty]
         public QuestionBlock AddingQuestionBlock { get; set; }
 
-
         public IEnumerable<Test> Tests { get; set; }
         public string? CurrentUserName { get; set;}
-
-
 
         public void OnGet()
         {

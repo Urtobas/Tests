@@ -16,6 +16,7 @@
                         <th class="bg-primary text-white fw-bold">Название теста</th>
                         <th class="bg-primary text-white fw-bold">Уровень сложности</th>
                         <th class="bg-primary text-white fw-bold">Язык</th>
+                        <th class="bg-primary text-white fw-bold"></th>
                     </tr>
                 </thead>
 
@@ -25,6 +26,7 @@
                         <td><a asp-page="/SolvingTestPage" asp-route-id="@e.Id" class="text-decoration-none">@e.TestTitle</a></td>
                         <td>@e.DifficultyLevel</td>
                         <td>@e.Language</td>
+                        <td><a class="btn btn-sm" asp-page="EditTestPage" asp-route-testId="@e.Id" title="Редактировать тест"><img src="~/icons/edit.svg" height="32" /></a></td>
                     </tr>
                 }
             </table>

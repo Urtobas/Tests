@@ -65,6 +65,10 @@ body {
     font-size: 1.1rem;
 }
 .bg-silver{
+    background-color: silver !important;
+}
+
+/*.bg-silver {
     background-color: silver;
 }
 
@@ -78,8 +82,4 @@ body {
 
 .bg-silver {
     background-color: silver;
-}
-
-.bg-silver {
-    background-color: silver;
-}
+}*/

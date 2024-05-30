@@ -28,7 +28,6 @@ namespace Tests.Pages
             SelectedUser = _context.TestingUsers.FirstOrDefault(op => op.Id == id);
             TestResults = _context.TestResults.Where(op => op.TestingUserId == id);
             HttpContext.Session.SetString("SelectedUserId", SelectedUser.Id);
-            //HttpContext.Session.SetString("TestingUserName", HttpContext.User.Identity.Name);
             StatisticModels = new();
             if (SelectedUser != null && TestResults != null)
             {
@@ -45,6 +44,7 @@ namespace Tests.Pages
                         DatePassing = e.DatePassing
                     };
                     statMod.RelativeResult = 1;
+                    statMod.TestTitle = _context.Tests.FirstOrDefault(op => op.Id == e.TestId).TestTitle;
                     StatisticModels.Add(statMod);
                 }
                 TestsCount = StatisticModels.Count;
@@ -134,8 +134,9 @@ namespace Tests.Pages
     public class StatisticModel
     {
         public int Id { get; set; }
+        public string TestTitle { get; set; } = "";
         public string UserAliasName { get; set; } = "";
-        public string UserEmail { get; set; }
+        public string UserEmail { get; set; } = "";
         public int RightAnswersCount { get; set; }
         public int WrongAnswersCount { get; set; }
         public DateTime DatePassing { get; set; }

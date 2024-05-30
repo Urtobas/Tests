@@ -27,6 +27,7 @@
     <caption class="display-8" style="caption-side:top;">Таблица результатов прохождения тестов пользователя @Model.SelectedUser.AliasName</caption>
     <thead>
         <tr>
+            <td class="bg-primary text-white fw-bold">Название теста</td>
             <td class="bg-primary text-white fw-bold">Дата</td>
             <td class="bg-primary text-white fw-bold">Правильные ответы</td>
             <td class="bg-primary text-white fw-bold">Неправильные ответы</td>
@@ -37,6 +38,7 @@
     @foreach (var e in Model.StatisticModels)
     {
         <tr>
+            <td>@e.TestTitle</td>
             <td>@e.DatePassing</td>
             <td>@e.RightAnswersCount</td>
             <td>@e.WrongAnswersCount</td>

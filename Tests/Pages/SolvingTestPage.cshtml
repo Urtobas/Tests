@@ -30,7 +30,7 @@ else
         {
             <div class="m-2">
                 <div class="form-check">
-                    <label class="display-blue-9">@Model.Blocks.ElementAt(i).Question</label>
+                    <label class="display-blue-9"><span class="fw-bold">@(i+1).</span> @Model.Blocks.ElementAt(i).Question</label>
                     <input hidden name="currentTestId" value="@Model.CurrentTest.Id">
                 </div>
                 <div class="form-check">
