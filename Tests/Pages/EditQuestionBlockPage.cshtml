@@ -1,0 +1,72 @@
+﻿@page "{testId?}/{questionId?}"
+@model Tests.Pages.EditQuestionBlockPageModel
+@{
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-3">
+            <img src="~/icons/question.svg" class="img-fluid" />
+        </div>
+        <form method="post" class="col-9">
+            @if (!String.IsNullOrEmpty(TempData["SuccessMessage"].ToString()))
+            {
+                <div class="col-8 display-8 alert-success p-2 m-2">@TempData["SuccessMessage"]</div>
+            }
+            <div>
+                <label class="display-10">@Model.SelectedTest.TestTitle</label>
+                <input asp-for="EditingQuestionBlock.TestId" class="form-control" name="TestId" readonly required hidden value="@Model.EditingQuestionBlock.TestId" />
+            </div>
+            <div>
+                <input asp-for="EditingQuestionBlock.Id" class="form-control" name="questionId" readonly required hidden value="@Model.EditingQuestionBlock.Id" />
+            </div>
+
+            @if (!String.IsNullOrEmpty(Model.CurrentUserName))
+            {
+                <div>
+                    <label asp-for="EditingQuestionBlock.AuthorName"></label>
+                    <input asp-for="EditingQuestionBlock.AuthorName" class="form-control" name="AuthorName" readonly required value="@Model.CurrentUserName">
+                </div>
+            }
+            else
+            {
+                <div>
+                    <label asp-for="EditingQuestionBlock.AuthorName"></label>
+                    <input asp-for="EditingQuestionBlock.AuthorName" class="form-control" readonly value="Вход не выполнен">
+                    <div class="d-flex justify-content-around">
+                        <a class="btn btn-warning text-dark flex-fill my-1 me-1" asp-area="Identity" asp-page="/Account/Register">Зарегистрироваться</a>
+                        <a class="btn btn-warning text-dark flex=fill my-1 ms-1" asp-area="Identity" asp-page="/Account/Login">Войти в аккаунт</a>
+                    </div>
+                </div>
+            }
+
+            <div>
+                <label asp-for="EditingQuestionBlock.Question"></label>
+                <textarea asp-for="EditingQuestionBlock.Question" class="form-control mb-4" id="Question" name="Question" required></textarea>
+            </div>
+            <div>
+                <label asp-for="EditingQuestionBlock.Answer1"></label>
+                <textarea asp-for="EditingQuestionBlock.Answer1" class="form-control mb-4" id="Answer1" name="Answer1" required></textarea>
+            </div>
+            <div>
+                <label asp-for="EditingQuestionBlock.Answer2"></label>
+                <textarea asp-for="EditingQuestionBlock.Answer2" class="form-control mb-4" id="Answer2" name="Answer2" required></textarea>
+            </div>
+            <div>
+                <label asp-for="EditingQuestionBlock.Answer3"></label>
+                <textarea asp-for="EditingQuestionBlock.Answer3" class="form-control mb-4" id="Answer3" name="Answer3" required></textarea>
+            </div>
+            <div>
+                <label asp-for="EditingQuestionBlock.Answer4"></label>
+                <textarea asp-for="EditingQuestionBlock.Answer4" class="form-control mb-4" id="Answer4" name="Answer4" required></textarea>
+            </div>
+            <div>
+                <label asp-for="EditingQuestionBlock.RightAnswerNum"></label>
+                <input asp-for="EditingQuestionBlock.RightAnswerNum" class="form-control mb-2" type="number" min="1" max="4" id="RightAnswerNum" name="RightAnswerNum" required>
+            </div>
+            <button class="btn btn-secondary form-control" type="submit">Сохранить</button>
+        </form>
+
+    </div>
+</div>
+

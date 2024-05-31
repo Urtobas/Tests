@@ -29,7 +29,7 @@ namespace Tests.Models
         public int TestId { get; set; } // Внешний ключ
         //public Test Test { get; set; } // Навигационное свойство
 
-        [Required, Display(Name = "Имя автора вопросов")]
+        [Required, Display(Name = "Имя автора теста")]
         public string AuthorName { get; set; } // имя (почта) автора вопросов
         
     }

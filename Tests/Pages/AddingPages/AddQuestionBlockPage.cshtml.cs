@@ -17,7 +17,7 @@ namespace Tests.Pages
             _context = context;
             _userManager = userManager;
 
-            Tests = _context.Tests;
+            
         }
         [BindProperty]
         public QuestionBlock AddingQuestionBlock { get; set; }
@@ -32,6 +32,7 @@ namespace Tests.Pages
             if (user != null)
             {
                 CurrentUserName = HttpContext.User.Identity.Name;
+                Tests = _context.Tests.Where(op => op.Author == CurrentUserName);
             }
         }
 

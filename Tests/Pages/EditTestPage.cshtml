@@ -19,7 +19,7 @@
                             <td>@(++i)</td>
                             <td title="Для удаления или редактирования воспользуйтесь кпопками справа">@e.Question</td>
                             <td><a class="btn btn-danger btn-sm" asp-page="EditTestPage" asp-route-testId="@Model.SelectedTest.Id" asp-route-questionId="@e.Id" asp-page-handler="DeleteQuestion">Удалить</a></td>
-                            <td><a class="btn btn-warning btn-sm" asp-page="EditTestPage" asp-route-id="4" asp-page-handler="DeleteQuestion">Редактировать</a></td>
+                            <td><a class="btn btn-warning btn-sm" asp-page="EditQuestionBlockPage" asp-route-testId="@Model.SelectedTest.Id" asp-route-questionId="@e.Id">Редактировать</a></td>
                         </tr>
                         <tr>
                             <td class="bg-silver" colspan="4">

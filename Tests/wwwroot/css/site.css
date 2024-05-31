@@ -68,6 +68,10 @@ body {
     background-color: silver !important;
 }
 
+.bg-pink {
+    background-color: pink !important;
+}
+
 /*.bg-silver {
     background-color: silver;
 }

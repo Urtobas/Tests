@@ -17,12 +17,20 @@
             }
             <div>
                 <label asp-for="AddingQuestionBlock.TestId"></label>
-                <select class="form-control mb-4" name="TestId">
-                    @foreach (var e in Model.Tests)
-                    {
-                        <option value="@e.Id">@e.TestTitle</option>
-                    }
-                </select>
+                @if(Model.Tests.Count() > 0)
+                {
+                    <select class="form-control mb-4" name="TestId">
+                        @foreach (var e in Model.Tests)
+                        {
+                            <option value="@e.Id">@e.TestTitle</option>
+                        }
+                    </select>
+                }
+                else
+                {
+                    <div class="display-10 bg-pink p-1">У вас нет ни одного теста, добавленного вами. Перед тем, как начать добавление вопросов,
+                        <a class="text-decoration-none" asp-page="/AddingPages/AddTestPage">перейдите</a> на страницу добавления теста</div>
+                }
             </div>
 
             @if (!String.IsNullOrEmpty(Model.CurrentUserName))
