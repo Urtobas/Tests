@@ -45,6 +45,7 @@ namespace Tests.Pages
                 try
                 {
                     CurrentUserName = HttpContext.User.Identity.Name;
+                    Tests = _context.Tests.Where(op => op.Author == CurrentUserName);
                 }
                 catch
                 {

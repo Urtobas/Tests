@@ -16,7 +16,7 @@
                     @foreach (var e in Model.QuestionBlocks)
                     {
                         <tr>
-                            <td>@(++i)</td>
+                            <td class="fw-bold">@(++i))</td>
                             <td title="Для удаления или редактирования воспользуйтесь кпопками справа">@e.Question</td>
                             <td><a class="btn btn-danger btn-sm" asp-page="EditTestPage" asp-route-testId="@Model.SelectedTest.Id" asp-route-questionId="@e.Id" asp-page-handler="DeleteQuestion">Удалить</a></td>
                             <td><a class="btn btn-warning btn-sm" asp-page="EditQuestionBlockPage" asp-route-testId="@Model.SelectedTest.Id" asp-route-questionId="@e.Id">Редактировать</a></td>
@@ -40,90 +40,3 @@
         </div>
     </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-@*
-
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-3">
-            <img src="~/icons/question.svg" class="img-fluid" />
-        </div>
-        <form method="post" class="col-9">
-            @if (!String.IsNullOrEmpty(TempData["SuccessMessage"].ToString()))
-            {
-                <div class="col-8 display-8 alert-success p-2 m-2">@TempData["SuccessMessage"]</div>
-            }
-            <div>
-                <label asp-for="AddingQuestionBlock.TestId"></label>
-                <select class="form-control mb-4" name="TestId">
-                    @foreach (var e in Model.Tests)
-                    {
-                        <option value="@e.Id">@e.TestTitle</option>
-                    }
-                </select>
-            </div>
-
-            @if (!String.IsNullOrEmpty(Model.CurrentUserName))
-            {
-                <div>
-                    <label asp-for="AddingQuestionBlock.AuthorName"></label>
-                    <input asp-for="AddingQuestionBlock.AuthorName" class="form-control" name="AuthorName" readonly required value="@Model.CurrentUserName">
-                </div>
-            }
-            else
-            {
-                <div>
-                    <label asp-for="AddingQuestionBlock.AuthorName"></label>
-                    <input asp-for="AddingQuestionBlock.AuthorName" class="form-control" readonly value="Вход не выполнен">
-                    <div class="d-flex justify-content-around">
-                        <a class="btn btn-warning text-dark flex-fill my-1 me-1" asp-area="Identity" asp-page="/Account/Register">Зарегистрироваться</a>
-                        <a class="btn btn-warning text-dark flex=fill my-1 ms-1" asp-area="Identity" asp-page="/Account/Login">Войти в аккаунт</a>
-                    </div>
-                </div>
-            }
-
-            <div>
-                <label asp-for="AddingQuestionBlock.Question"></label>
-                <textarea asp-for="AddingQuestionBlock.Question" class="form-control mb-4" id="Question" name="Question" required></textarea>
-            </div>
-            <div>
-                <label asp-for="AddingQuestionBlock.Answer1"></label>
-                <textarea asp-for="AddingQuestionBlock.Answer1" class="form-control mb-4" id="Answer1" name="Answer1" required></textarea>
-            </div>
-            <div>
-                <label asp-for="AddingQuestionBlock.Answer2"></label>
-                <textarea asp-for="AddingQuestionBlock.Answer2" class="form-control mb-4" id="Answer2" name="Answer2" required></textarea>
-            </div>
-            <div>
-                <label asp-for="AddingQuestionBlock.Answer3"></label>
-                <textarea asp-for="AddingQuestionBlock.Answer3" class="form-control mb-4" id="Answer3" name="Answer3" required></textarea>
-            </div>
-            <div>
-                <label asp-for="AddingQuestionBlock.Answer4"></label>
-                <textarea asp-for="AddingQuestionBlock.Answer4" class="form-control mb-4" id="Answer4" name="Answer4" required></textarea>
-            </div>
-            <div>
-                <label asp-for="AddingQuestionBlock.RightAnswerNum"></label>
-                <input asp-for="AddingQuestionBlock.RightAnswerNum" class="form-control mb-2" type="number" min="1" max="4" id="RightAnswerNum" name="RightAnswerNum" required>
-            </div>
-            <button class="btn btn-secondary form-control" type="submit">Сохранить</button>
-        </form>
-
-    </div>
-</div>
- *@

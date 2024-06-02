@@ -1,0 +1,55 @@
+﻿@page "{id?}"
+@model Tests.Pages.EditTestParametersPageModel
+@{
+    int i = 0;
+}
+
+<h1 class="display-7">Редактирование параметров теста</h1>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-3">
+            <img src="~/icons/question.svg" class="img-fluid" />
+        </div>
+        <div class="col-9">
+            <form method="post">
+                 <div class="my-2">
+                    <input class="form-control" asp-for="@Model.EditingTest.Id" name="id"/>
+                </div>
+
+                <div class="my-2">
+                    <label asp-for="@Model.EditingTest.TestTitle"></label>
+                    <input class="form-control" asp-for="@Model.EditingTest.TestTitle" name="TestTitle" />
+                </div>
+
+                <div class="my-2">
+                    <label asp-for="@Model.EditingTest.DifficultyLevel"></label>
+                    <select asp-for="@Model.EditingTest.DifficultyLevel" class="form-control" name="DifficultyLevel">
+                        @foreach(var e in Model.DifficultyLevels)
+                        {
+                            <option>@e.Level</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="my-2">
+                    <label asp-for="@Model.EditingTest.Language"></label>
+                    <select class="form-control" asp-for="@Model.EditingTest.Language" name="Language">
+                        @foreach(var e in Model.Languages)
+                        {
+                            <option>@e.LanguageTitle</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="my-2">
+                    <label asp-for="@Model.EditingTest.Author"></label>
+                    <input class="form-control" value="@Model.EditingTest.Author" readonly name="Author"/>
+                </div>
+
+                <input class="form-control my-2 btn btn-secondary" type="submit" value="Сохранить изменения" />
+            </form>
+           
+        </div>
+    </div>
+</div>

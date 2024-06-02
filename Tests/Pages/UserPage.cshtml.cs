@@ -23,8 +23,16 @@ namespace Tests.Pages
             var currentUser = HttpContext.User.Identity;
             if (currentUser != null)
             {
-                UserName = currentUser.Name;
-                UserId = _context.Users.FirstOrDefault(op => op.UserName == UserName).Id;
+                try
+                {
+                    UserName = currentUser.Name;
+                    UserId = _context.Users.FirstOrDefault(op => op.UserName == UserName).Id;
+                }
+                catch
+                {
+                    throw new Exception();
+                }
+
             }
             UserTests = _context.Tests.Where(op => op.Author == UserName);
         }

@@ -12,35 +12,44 @@ namespace Tests.Pages
         public IndexModel(ApplicationDbContext context)
         {
             _context = context;
-            tagsCount = 10; 
+            tagsCount = 10;
 
         }
         public int TestCount { get; set; }
         public IEnumerable<Test> Tests { get; set; }
         public IEnumerable<Test> RandomTests { get; set; }
 
-        public void OnGet()
+        public IActionResult OnGet()
         {
             try
             {
                 TestCount = _context.Tests.Count();
                 Tests = _context.Tests.ToList();
                 RandomTests = GetRandomElements(Tests, tagsCount).ToList();
+                return Page();
             }
             catch
             {
                 Tests = new List<Test>();
                 RandomTests = new List<Test>();
+                TempData["ErrorMessage"] = "Произошла ошибка, вызванная проблемами соединения с базой данных";
+                return RedirectToPage("/Error");
             }
-            
         }
 
         //перенести потом в отдельную библитеку
         public static IEnumerable<T> GetRandomElements<T>(IEnumerable<T> collection, int count)
         {
             var random = new Random();
-            var shuffledCollection = collection.OrderBy(x => random.Next()).ToList();
-            return shuffledCollection.Take(count);
+            try
+            {
+                var shuffledCollection = collection.OrderBy(x => random.Next()).ToList();
+                return shuffledCollection.Take(count);
+            }
+            catch
+            {
+                return collection;
+            }
         }
     }
 
