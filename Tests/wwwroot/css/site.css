@@ -64,6 +64,35 @@ body {
     font-family: Arial;
     font-size: 1.1rem;
 }
+
+.display-blue-7 {
+    color: blue;
+    font-family: Arial;
+    font-size: 2rem;
+}
+
+.display-header-1 {
+    color: #505050;
+    font-family: Arial;
+    font-size: 3rem;
+    margin: 2rem;
+}
+
+.display-header-2 {
+    color: #505050;
+    font-family: Arial;
+    font-size: 2.5rem;
+    margin: 2rem;
+}
+
+.display-header-3 {
+    color: #505050;
+    font-family: Arial;
+    font-size: 2rem;
+    margin: 2rem;
+}
+
+
 .bg-silver{
     background-color: silver !important;
 }

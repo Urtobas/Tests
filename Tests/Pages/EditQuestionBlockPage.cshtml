@@ -3,6 +3,7 @@
 @{
 }
 
+<h1 class="display-header-1">Редактирование вопросов теста</h1>
 <div class="container-fluid">
     <div class="row">
         <div class="col-3">
@@ -14,7 +15,7 @@
                 <div class="col-8 display-8 alert-success p-2 m-2">@TempData["SuccessMessage"]</div>
             }
             <div>
-                <label class="display-10">@Model.SelectedTest.TestTitle</label>
+                <label class="display-header-3">@Model.SelectedTest.TestTitle</label>
                 <input asp-for="EditingQuestionBlock.TestId" class="form-control" name="TestId" readonly required hidden value="@Model.EditingQuestionBlock.TestId" />
             </div>
             <div>
@@ -25,7 +26,7 @@
             {
                 <div>
                     <label asp-for="EditingQuestionBlock.AuthorName"></label>
-                    <input asp-for="EditingQuestionBlock.AuthorName" class="form-control" name="AuthorName" readonly required value="@Model.CurrentUserName">
+                    <input asp-for="EditingQuestionBlock.AuthorName" class="form-control mb-4" name="AuthorName" readonly required value="@Model.CurrentUserName">
                 </div>
             }
             else
