@@ -22,6 +22,7 @@ namespace Tests.Pages
         public UserStatisticModel(ApplicationDbContext context)
         {
             _context = context;
+            StatisticModels = new();
         }
         public IActionResult OnGet(string id)
         {
@@ -118,7 +119,7 @@ namespace Tests.Pages
                 }
                 else
                 {
-                    TempData["ErrorMessage"] = "Вы не можете удалить результаты не своих тестов";
+                    TempData["ErrorMessage"] = "Вы не можете удалить результаты прохождения тестов другими пользователями";
                     return RedirectToPage("/Error");
                 }
             }

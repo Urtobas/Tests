@@ -42,20 +42,20 @@ namespace Tests.Pages
                     TempData["ErrorMessage"] = "Произошла ошибка при добавления языка программирования. " +
                         "Возможно у вас недостаточно прав для выполения данного действия. Для получения таких прав обратитесь к администратору" + "</br>";
                     TempData["ErrorMessage"] += $"Список ошибок - {ex}";
-                    return RedirectToPage("Error");
+                    return RedirectToPage("/Error");
                 }
             }
             else
             {
                 TempData["ErrorMessage"] = "Произошла ошибка при добавления языка программирования. " +
                         "Возможно у вас недостаточно прав для выполения данного действия. Для получения таких прав обратитесь к администратору" + "</br>";
-                return RedirectToPage("Error");
+                return RedirectToPage("/Error");
             }
         }
 
         public IActionResult OnGetRemoveLanguage(int? id)
         {
-            bool flag = HttpContext.User.HasClaim(op => op.Type == "status" && op.Value == "admin");
+            bool flag = HttpContext.User.HasClaim(op => op.Type == "status" && op.Value == "admin"); // проверяем, имеет ли пользователь стату admin
             ProgramLanguage? language = _context.ProgramLanguages.FirstOrDefault(op => op.Id == id);
             if(language != null && flag)
             {
@@ -63,20 +63,21 @@ namespace Tests.Pages
                 {
                     _context.ProgramLanguages.Remove(language);
                     _context.SaveChanges();
+                    Languages = _context.ProgramLanguages.ToList();
                     return Page();
                 }
                 catch
                 {
                     TempData["ErrorMessage"] = "Произошла ошибка при удлении языка программирования. " +
-                       "Возможно у вас недостаточно прав для выполения данного действия. Для получения таких прав обратитесь к администратору" + "</br>";
-                    return RedirectToPage("Error");
+                       "Возможно у вас недостаточно прав для выполнения данного действия. Для получения таких прав обратитесь к администратору" + "</br>";
+                    return RedirectToPage("/Error");
                 }
             }
             else
             {
                 TempData["ErrorMessage"] = "Произошла ошибка при удлении языка программирования. " +
-                      "Возможно у вас недостаточно прав для выполения данного действия. Для получения таких прав обратитесь к администратору" + "</br>";
-                return RedirectToPage("Error");
+                      "Возможно у вас недостаточно прав для выполнения данного действия. Для получения таких прав обратитесь к администратору" + "</br>";
+                return RedirectToPage("/Error");
             }
         }
     }
